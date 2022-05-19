@@ -1,86 +1,87 @@
 {
-  "Actor": {
-    "types": ["character", "npc"],
-    "templates": {
-      "base": {
-        "EP": {
-          "value": 10,
-          "min": 0,
-          "max": 10
+    "Actor": {
+        "types": ["character", "npc"],
+        "templates": {
+            "base": {
+                "EP": {
+                    "value": 10,
+
+                    "min": 0,
+                    "max": 10
+                },
+                "mana": {
+                    "value": 0,
+                    "min": 0,
+                    "max": 0
+                },
+                "biography": ""
+            }
         },
-        "mana": {
-          "value": 0,
-          "min": 0,
-          "max": 0
+        "character": {
+            "templates": ["base"],
+            "attributes": {
+                "str": {
+                    "value": 0
+                },
+                "dex": {
+                    "value": 0
+                },
+                "con": {
+                    "value": 0
+                },
+                "int": {
+                    "value": 0
+                },
+                "cha": {
+                    "value": 0
+                },
+                "luk": {
+                    "value": 0
+                }
+            },
+            "abilities": []
         },
-        "biography": ""
-      }
-    },
-    "character": {
-      "templates": ["base"],
-      "attributes": {
-        "str": {
-          "value": 0
-        },
-        "dex": {
-          "value": 0
-        },
-        "con": {
-          "value": 0
-        },
-        "int": {
-          "value": 0
-        },
-        "cha": {
-          "value": 0
-        },
-        "luk": {
-          "value": 0
+        "npc": {
+            "templates": ["base"]
         }
-      },
-      "abilities": []
     },
-    "npc": {
-      "templates": ["base"]
+    "Item": {
+        "types": ["item", "weapon", "armor", "feature", "spell"],
+        "templates": {
+            "base": {
+                "description": ""
+            },
+            "genericItem": {
+                "quantity": 1,
+                "weight": 0
+            }
+        },
+        "item": {
+            "templates": ["base", "genericItem"]
+        },
+        "weapon": {
+            "templates": ["base", "genericItem"],
+            "formula": "d20 + @attributes.str.value",
+            "damage": "d6"
+        },
+        "armor": {
+            "templates": ["base", "genericItem"],
+            "defense": 0
+        },
+        "feature": {
+            "templates": ["base"],
+            "attributeModifiers": {
+                "str": 0,
+                "dex": 0,
+                "con": 0,
+                "int": 0,
+                "cha": 0
+            },
+            "abilities": []
+        },
+        "spell": {
+            "templates": ["base"],
+            "spellCost": 1
+        }
     }
-  },
-  "Item": {
-    "types": ["item", "weapon", "armor", "feature", "spell"],
-    "templates": {
-      "base": {
-        "description": ""
-      },
-      "genericItem": {
-        "quantity": 1,
-        "weight": 0
-      }
-    },
-    "item": {
-      "templates": ["base", "genericItem"]
-    },
-    "weapon": {
-      "templates": ["base", "genericItem"],
-      "formula": "d20 + @attributes.str.value",
-      "damage": "d6"
-    },
-    "armor": {
-      "templates": ["base", "genericItem"],
-      "defense": 0
-    },
-    "feature": {
-      "templates": ["base"],
-      "attributeModifiers": {
-        "str": 0,
-        "dex": 0,
-        "con": 0,
-        "int": 0,
-        "cha": 0
-      },
-      "abilities": []
-    },
-    "spell": {
-      "templates": ["base"],
-      "spellCost": 1
-    }
-  }
 }

@@ -1,28 +1,28 @@
 {
-  "name": "apotheosis",
-  "title": "Apotheosis",
-  "description": "The Apotheosis system for FoundryVTT!",
-  "version": "1.0.0",
-  "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "9",
-  "author": "patke",
-  "esmodules": ["module/apotheosis.mjs"],
-  "styles": ["css/apotheosis.css"],
-  "scripts": [],
-  "packs": [],
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json"
-    }
-  ],
-  "gridDistance": 5,
-  "gridUnits": "ft",
-  "primaryTokenAttribute": "EP",
-  "secondaryTokenAttribute": "mana",
-  "url": "",
-  "manifest": "",
-  "download": "",
-  "license": "LICENSE.txt"
+    "name": "apotheosis",
+    "title": "Apotheosis",
+    "description": "The Apotheosis system for FoundryVTT!",
+    "version": "1.0.0",
+    "minimumCoreVersion": "0.8.6",
+    "compatibleCoreVersion": "9",
+    "author": "patke",
+    "esmodules": ["module/apotheosis.mjs"],
+    "styles": ["css/apotheosis.css"],
+    "scripts": [],
+    "packs": [],
+    "languages": [
+        {
+            "lang": "en",
+            "name": "English",
+            "path": "lang/en.json"
+        }
+    ],
+    "gridDistance": 5,
+    "gridUnits": "ft",
+    "primaryTokenAttribute": "EP",
+    "secondaryTokenAttribute": "mana",
+    "url": "",
+    "manifest": "",
+    "download": "",
+    "license": "LICENSE.txt"
 }

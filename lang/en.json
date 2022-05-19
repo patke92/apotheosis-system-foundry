@@ -1,22 +1,22 @@
 {
-  "APOTHEOSIS.AttributeStr": "Strength",
-  "APOTHEOSIS.AttributeCon": "Constitution",
-  "APOTHEOSIS.AttributeDex": "Dexterity",
-  "APOTHEOSIS.AttributeInt": "Intelligence",
-  "APOTHEOSIS.AttributeCha": "Charisma",
-  "APOTHEOSIS.AttributeLuk": "Luck",
+    "APOTHEOSIS.AttributeStr": "Strength",
+    "APOTHEOSIS.AttributeCon": "Constitution",
+    "APOTHEOSIS.AttributeDex": "Dexterity",
+    "APOTHEOSIS.AttributeInt": "Intelligence",
+    "APOTHEOSIS.AttributeCha": "Charisma",
+    "APOTHEOSIS.AttributeLuk": "Luck",
 
-  "APOTHEOSIS.AttributeStrAbbr": "str",
-  "APOTHEOSIS.AttributeConAbbr": "con",
-  "APOTHEOSIS.AttributeDexAbbr": "dex",
-  "APOTHEOSIS.AttributeIntAbbr": "int",
-  "APOTHEOSIS.AttributeChaAbbr": "cha",
-  "APOTHEOSIS.AttributeLukAbbr": "luk",
+    "APOTHEOSIS.AttributeStrAbbr": "str",
+    "APOTHEOSIS.AttributeConAbbr": "con",
+    "APOTHEOSIS.AttributeDexAbbr": "dex",
+    "APOTHEOSIS.AttributeIntAbbr": "int",
+    "APOTHEOSIS.AttributeChaAbbr": "cha",
+    "APOTHEOSIS.AttributeLukAbbr": "luk",
 
-  "APOTHEOSIS.EffectCreate": "Create Effect",
-  "APOTHEOSIS.EffectToggle": "Toggle Effect",
-  "APOTHEOSIS.EffectEdit": "Edit Effect",
-  "APOTHEOSIS.EffectDelete": "Delete Effect",
+    "APOTHEOSIS.EffectCreate": "Create Effect",
+    "APOTHEOSIS.EffectToggle": "Toggle Effect",
+    "APOTHEOSIS.EffectEdit": "Edit Effect",
+    "APOTHEOSIS.EffectDelete": "Delete Effect",
 
-  "APOTHEOSIS.Add": "Add"
+    "APOTHEOSIS.Add": "Add"
 }
