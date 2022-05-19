@@ -3,15 +3,15 @@
     "types": ["character", "npc"],
     "templates": {
       "base": {
-        "health": {
+        "EP": {
           "value": 10,
           "min": 0,
           "max": 10
         },
-        "power": {
-          "value": 5,
+        "mana": {
+          "value": 0,
           "min": 0,
-          "max": 5
+          "max": 0
         },
         "biography": ""
       }
@@ -19,38 +19,33 @@
     "character": {
       "templates": ["base"],
       "attributes": {
-        "level": {
-          "value": 1
-        }
-      },
-      "abilities": {
         "str": {
-          "value": 10
+          "value": 0
         },
         "dex": {
-          "value": 10
+          "value": 0
         },
         "con": {
-          "value": 10
+          "value": 0
         },
         "int": {
-          "value": 10
-        },
-        "wis": {
-          "value": 10
+          "value": 0
         },
         "cha": {
-          "value": 10
+          "value": 0
+        },
+        "luk": {
+          "value": 0
         }
-      }
+      },
+      "abilities": []
     },
     "npc": {
-      "templates": ["base"],
-      "cr": 0
+      "templates": ["base"]
     }
   },
   "Item": {
-    "types": ["item", "feature", "spell"],
+    "types": ["item", "weapon", "armor", "feature", "spell"],
     "templates": {
       "base": {
         "description": ""
@@ -59,15 +54,34 @@
     "item": {
       "templates": ["base"],
       "quantity": 1,
+      "weight": 0
+    },
+    "weapon": {
+      "templates": ["base"],
+      "quantity": 1,
       "weight": 0,
-      "formula": "d20 + @str.mod + ceil(@lvl / 2)"
+      "formula": "d20 + @str.value",
+      "damage": "d6"
+    },
+    "armor": {
+      "templates": ["base"],
+      "quantity": 1,
+      "weight": 0
     },
     "feature": {
-      "templates": ["base"]
+      "templates": ["base"],
+      "attributeModifiers": {
+        "str": 0,
+        "dex": 0,
+        "con": 0,
+        "int": 0,
+        "cha": 0
+      },
+      "abilities": []
     },
     "spell": {
       "templates": ["base"],
-      "spellLevel": 1
+      "spellCost": 1
     }
   }
 }

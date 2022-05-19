@@ -26,52 +26,38 @@
         will add a small amount of padding, a border, and will center all of its
         child elements content and text. --}}
         <div class="resource flex-group-center">
-          <label for="data.health.value" class="resource-label">Health</label>
+          <label for="data.EP.value" class="resource-label">EP</label>
           <div class="resource-content flexrow flex-center flex-between">
             <input
               type="text"
-              name="data.health.value"
-              value="{{data.health.value}}"
+              name="data.EP.value"
+              value="{{data.EP.value}}"
               data-dtype="Number"
             />
             <span> / </span>
             <input
               type="text"
-              name="data.health.max"
-              value="{{data.health.max}}"
+              name="data.EP.max"
+              value="{{data.EP.max}}"
               data-dtype="Number"
             />
           </div>
         </div>
 
         <div class="resource flex-group-center">
-          <label for="data.power.value" class="resource-label">Power</label>
+          <label for="data.mana.value" class="resource-label">mana</label>
           <div class="resource-content flexrow flex-center flex-between">
             <input
               type="text"
-              name="data.power.value"
-              value="{{data.power.value}}"
+              name="data.mana.value"
+              value="{{data.mana.value}}"
               data-dtype="Number"
             />
             <span> / </span>
             <input
               type="text"
-              name="data.power.max"
-              value="{{data.power.max}}"
-              data-dtype="Number"
-            />
-          </div>
-        </div>
-
-        <div class="resource flex-group-center">
-          <label for="data.attributes.level.value" class="resource-label"
-            >Level</label
-          >
-          <div class="resource-content flexrow flex-center flex-between">
-            <input
-              type="text"
-              name="data.attributes.level.value"
-              value="{{data.attributes.level.value}}"
+              name="data.mana.max"
+              value="{{data.mana.max}}"
               data-dtype="Number"
             />
           </div>
@@ -85,6 +71,7 @@
     {{!-- Default tab is specified in actor-sheet.mjs --}}
     <a class="item" data-tab="features">Features</a>
     <a class="item" data-tab="description">Description</a>
+    <a class="item" data-tab="equipment">Equipment</a>
     <a class="item" data-tab="items">Items</a>
     <a class="item" data-tab="spells">Spells</a>
     <a class="item" data-tab="effects">Effects</a>
@@ -99,25 +86,25 @@
           {{!-- The grid classes are defined in scss/global/_grid.scss. To use,
           use both the "grid" and "grid-Ncol" class where "N" can be any number
           from 1 to 12 and will create that number of columns. --}}
-          <div class="abilities flexcol">
-            {{#each data.abilities as |ability key|}}
-            <div class="ability flexrow flex-group-center">
+          <div class="attributes flexcol">
+            {{#each data.attributes as |attribute key|}}
+            <div class="attribute flexrow flex-group-center">
               <label
-                for="data.abilities.{{key}}.value"
+                for="data.attributes.{{key}}.value"
                 class="resource-label rollable flexlarge align-left"
-                data-roll="d20+@abilities.{{key}}.mod"
-                data-label="{{ability.label}}"
-                >{{ability.label}}</label
+                data-roll="d20+@attributes.{{key}}.value"
+                data-label="{{attribute.label}}"
+                >{{attribute.label}}</label
               >
               <input
                 type="text"
-                name="data.abilities.{{key}}.value"
-                value="{{ability.value}}"
+                name="data.attributes.{{key}}.value"
+                value="{{attribute.value}}"
                 data-dtype="Number"
               />
               <!-- <span
                 class="ability-mod rollable"
-                data-roll="d20+@abilities.{{key}}.mod"
+                data-roll="d20+@attributes.{{key}}.mod"
                 data-label="{{ability.label}}"
                 >{{numberFormat ability.mod decimals=0 sign=true}}</span
               > -->
@@ -142,6 +129,11 @@
       you need to pass the actor's roll data to the rollData property. --}}
       {{editor content=data.biography target="data.biography" rollData=rollData
       button=true owner=owner editable=editable}}
+    </div>
+
+    {{!-- Owned Equipment Tab --}}
+    <div class="tab equipment" data-group="primary" data-tab="equipment">
+      {{> "systems/apotheosis/templates/actor/parts/actor-equipment.html"}}
     </div>
 
     {{!-- Owned Items Tab --}}

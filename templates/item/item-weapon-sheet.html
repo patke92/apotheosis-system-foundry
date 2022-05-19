@@ -1,3 +1,6 @@
+{{!-- This template is a fallback for when items don't have more specific
+templates. --}} {{!-- Generally, you'll want to make more specific templates
+when possible. --}}
 <form class="{{cssClass}}" autocomplete="off">
   <header class="sheet-header">
     <img
@@ -21,7 +24,7 @@
   {{!-- Sheet Tab Navigation --}}
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item" data-tab="description">Description</a>
-    <a class="item" data-tab="effects">Effects</a>
+    <a class="item" data-tab="attributes">Attributes</a>
   </nav>
 
   {{!-- Sheet Body --}}
@@ -33,8 +36,8 @@
     </div>
 
     {{!-- Attributes Tab --}}
-    <div class="tab effects" data-group="primary" data-tab="effects">
-      {{> "systems/apotheosis/templates/actor/parts/actor-effects.html"}}
+    <div class="tab attributes" data-group="primary" data-tab="attributes">
+      {{!-- As you add new fields, add them in here! --}}
     </div>
   </section>
 </form>

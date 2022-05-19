@@ -2,28 +2,28 @@ export const APOTHEOSIS = {};
 
 // Define constants here, such as:
 APOTHEOSIS.foobar = {
-  'bas': 'APOTHEOSIS.bas',
-  'bar': 'APOTHEOSIS.bar'
+  bas: "APOTHEOSIS.bas",
+  bar: "APOTHEOSIS.bar",
 };
 
 /**
- * The set of Ability Scores used within the sytem.
+ * The set of Attribute Scores used within the sytem.
  * @type {Object}
  */
- APOTHEOSIS.abilities = {
-  "str": "APOTHEOSIS.AbilityStr",
-  "dex": "APOTHEOSIS.AbilityDex",
-  "con": "APOTHEOSIS.AbilityCon",
-  "int": "APOTHEOSIS.AbilityInt",
-  "wis": "APOTHEOSIS.AbilityWis",
-  "cha": "APOTHEOSIS.AbilityCha"
+APOTHEOSIS.attributes = {
+  str: "APOTHEOSIS.AttributeStr",
+  dex: "APOTHEOSIS.AttributeDex",
+  con: "APOTHEOSIS.AttributeCon",
+  int: "APOTHEOSIS.AttributeInt",
+  cha: "APOTHEOSIS.AttributeCha",
+  luk: "APOTHEOSIS.AttributeLuk",
 };
 
-APOTHEOSIS.abilityAbbreviations = {
-  "str": "APOTHEOSIS.AbilityStrAbbr",
-  "dex": "APOTHEOSIS.AbilityDexAbbr",
-  "con": "APOTHEOSIS.AbilityConAbbr",
-  "int": "APOTHEOSIS.AbilityIntAbbr",
-  "wis": "APOTHEOSIS.AbilityWisAbbr",
-  "cha": "APOTHEOSIS.AbilityChaAbbr"
+APOTHEOSIS.attributeAbbreviations = {
+  str: "APOTHEOSIS.AttributeStrAbbr",
+  dex: "APOTHEOSIS.AttributeDexAbbr",
+  con: "APOTHEOSIS.AttributeConAbbr",
+  int: "APOTHEOSIS.AttributeIntAbbr",
+  cha: "APOTHEOSIS.AttributeChaAbbr",
+  luk: "APOTHEOSIS.AttributeLukAbbr",
 };
