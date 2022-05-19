@@ -1,23 +1,29 @@
-export const BOILERPLATE = {};
+export const APOTHEOSIS = {};
+
+// Define constants here, such as:
+APOTHEOSIS.foobar = {
+  'bas': 'APOTHEOSIS.bas',
+  'bar': 'APOTHEOSIS.bar'
+};
 
 /**
  * The set of Ability Scores used within the sytem.
  * @type {Object}
  */
- BOILERPLATE.abilities = {
-  "str": "BOILERPLATE.AbilityStr",
-  "dex": "BOILERPLATE.AbilityDex",
-  "con": "BOILERPLATE.AbilityCon",
-  "int": "BOILERPLATE.AbilityInt",
-  "wis": "BOILERPLATE.AbilityWis",
-  "cha": "BOILERPLATE.AbilityCha"
+ APOTHEOSIS.abilities = {
+  "str": "APOTHEOSIS.AbilityStr",
+  "dex": "APOTHEOSIS.AbilityDex",
+  "con": "APOTHEOSIS.AbilityCon",
+  "int": "APOTHEOSIS.AbilityInt",
+  "wis": "APOTHEOSIS.AbilityWis",
+  "cha": "APOTHEOSIS.AbilityCha"
 };
 
-BOILERPLATE.abilityAbbreviations = {
-  "str": "BOILERPLATE.AbilityStrAbbr",
-  "dex": "BOILERPLATE.AbilityDexAbbr",
-  "con": "BOILERPLATE.AbilityConAbbr",
-  "int": "BOILERPLATE.AbilityIntAbbr",
-  "wis": "BOILERPLATE.AbilityWisAbbr",
-  "cha": "BOILERPLATE.AbilityChaAbbr"
+APOTHEOSIS.abilityAbbreviations = {
+  "str": "APOTHEOSIS.AbilityStrAbbr",
+  "dex": "APOTHEOSIS.AbilityDexAbbr",
+  "con": "APOTHEOSIS.AbilityConAbbr",
+  "int": "APOTHEOSIS.AbilityIntAbbr",
+  "wis": "APOTHEOSIS.AbilityWisAbbr",
+  "cha": "APOTHEOSIS.AbilityChaAbbr"
 };

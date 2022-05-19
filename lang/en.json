@@ -1,22 +1,22 @@
 {
-  "BOILERPLATE.AbilityStr": "Strength",
-  "BOILERPLATE.AbilityCon": "Constitution",
-  "BOILERPLATE.AbilityDex": "Dexterity",
-  "BOILERPLATE.AbilityInt": "Intelligence",
-  "BOILERPLATE.AbilityWis": "Wisdom",
-  "BOILERPLATE.AbilityCha": "Charisma",
+  "APOTHEOSIS.AbilityStr": "Strength",
+  "APOTHEOSIS.AbilityCon": "Constitution",
+  "APOTHEOSIS.AbilityDex": "Dexterity",
+  "APOTHEOSIS.AbilityInt": "Intelligence",
+  "APOTHEOSIS.AbilityWis": "Wisdom",
+  "APOTHEOSIS.AbilityCha": "Charisma",
 
-  "BOILERPLATE.AbilityStrAbbr": "str",
-  "BOILERPLATE.AbilityConAbbr": "con",
-  "BOILERPLATE.AbilityDexAbbr": "dex",
-  "BOILERPLATE.AbilityIntAbbr": "int",
-  "BOILERPLATE.AbilityWisAbbr": "wis",
-  "BOILERPLATE.AbilityChaAbbr": "cha",
+  "APOTHEOSIS.AbilityStrAbbr": "str",
+  "APOTHEOSIS.AbilityConAbbr": "con",
+  "APOTHEOSIS.AbilityDexAbbr": "dex",
+  "APOTHEOSIS.AbilityIntAbbr": "int",
+  "APOTHEOSIS.AbilityWisAbbr": "wis",
+  "APOTHEOSIS.AbilityChaAbbr": "cha",
 
-  "BOILERPLATE.EffectCreate": "Create Effect",
-  "BOILERPLATE.EffectToggle": "Toggle Effect",
-  "BOILERPLATE.EffectEdit": "Edit Effect",
-  "BOILERPLATE.EffectDelete": "Delete Effect",
+  "APOTHEOSIS.EffectCreate": "Create Effect",
+  "APOTHEOSIS.EffectToggle": "Toggle Effect",
+  "APOTHEOSIS.EffectEdit": "Edit Effect",
+  "APOTHEOSIS.EffectDelete": "Delete Effect",
 
-  "BOILERPLATE.Add": "Add"
+  "APOTHEOSIS.Add": "Add"
 }
