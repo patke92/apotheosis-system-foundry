@@ -18,6 +18,24 @@
                     placeholder="Name"
                 />
             </h1>
+            <div class="resources grid grid-3col">
+                <div class="resource">
+                    <input
+                        name="race"
+                        type="text"
+                        value="{{race.name}}"
+                        placeholder="Race"
+                    />
+                </div>
+                <div class="resource">
+                    <input
+                        name="background"
+                        type="text"
+                        value="{{background.name}}"
+                        placeholder="Background"
+                    />
+                </div>
+            </div>
             {{!-- The grid classes are defined in scss/global/_grid.scss. To
             use, use both the "grid" and "grid-Ncol" class where "N" can be any
             number from 1 to 12 and will create that number of columns. --}}
@@ -48,7 +66,7 @@
 
                 <div class="resource flex-group-center">
                     <label for="data.mana.value" class="resource-label"
-                        >mana</label
+                        >Mana</label
                     >
                     <div
                         class="resource-content flexrow flex-center flex-between"
@@ -75,7 +93,7 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         {{!-- Default tab is specified in actor-sheet.mjs --}}
-        <a class="item" data-tab="features">Features</a>
+        <a class="item" data-tab="features">Attributes & Abilities</a>
         <a class="item" data-tab="description">Description</a>
         <a class="item" data-tab="equipment">Equipment</a>
         <a class="item" data-tab="items">Items</a>
@@ -87,48 +105,37 @@
     <section class="sheet-body">
         {{!-- Owned Features Tab --}}
         <div class="tab features" data-group="primary" data-tab="features">
-            <section class="grid grid-3col">
-                <aside class="sidebar">
-                    {{!-- The grid classes are defined in
-                    scss/global/_grid.scss. To use, use both the "grid" and
-                    "grid-Ncol" class where "N" can be any number from 1 to 12
-                    and will create that number of columns. --}}
-                    <div class="attributes flexcol">
-                        {{#each data.attributes as |attribute key|}}
-                        <div class="attribute flexrow flex-group-center">
-                            <label
-                                for="data.attributes.{{key}}.value"
-                                class="resource-label rollable flexlarge align-left"
-                                data-roll="d20+@attributes.{{key}}.value"
-                                data-label="{{attribute.label}}"
-                                >{{attribute.label}}</label
-                            >
-                            <input
-                                type="text"
-                                name="data.attributes.{{key}}.value"
-                                value="{{attribute.value}}"
-                                data-dtype="Number"
-                            />
-                            <!-- <span
-                class="ability-mod rollable"
-                data-roll="d20+@attributes.{{key}}.mod"
-                data-label="{{ability.label}}"
-                >{{numberFormat ability.mod decimals=0 sign=true}}</span
-              > -->
-                        </div>
-                        {{/each}}
-                    </div>
-                </aside>
-
-                {{!-- For the main features list, span the right two columns
-                --}}
+            <div class="attributes flexcol">
+                {{#each data.attributes as |attribute key|}}
+                <div class="attribute flexrow flex-group-center">
+                    <label
+                        for="data.attributes.{{key}}.value"
+                        class="resource-label rollable align-left"
+                        data-roll="d20+@attributes.{{key}}.value"
+                        data-label="{{attribute.label}}"
+                        >{{attribute.label}}</label
+                    >
+                    <input
+                        type="text"
+                        name="data.attributes.{{key}}.progression"
+                        value="{{attribute.progression}}"
+                        data-dtype="Number"
+                    />
+                    <input
+                        type="text"
+                        name="data.attributes.{{key}}.value"
+                        value="{{attribute.value}}"
+                        data-dtype="Number"
+                    />
+                </div>
+                {{/each}}
                 <section class="main grid-span-2">
                     {{!-- This is a Handlebars partial. They're stored in the
                     `/parts` folder next to this sheet, and defined in
                     module/helpers/templates.mjs --}} {{>
                     "systems/apotheosis/templates/actor/parts/actor-features.html"}}
                 </section>
-            </section>
+            </div>
         </div>
 
         {{!-- Biography Tab --}}

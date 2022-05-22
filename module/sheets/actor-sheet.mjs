@@ -64,8 +64,6 @@ export class ApotheosisActorSheet extends ActorSheet {
         // Prepare active effects
         context.effects = prepareActiveEffectCategories(this.actor.effects)
 
-        console.log(context)
-
         return context
     }
 
@@ -80,6 +78,21 @@ export class ApotheosisActorSheet extends ActorSheet {
         // Handle ability scores.
         for (let [k, v] of Object.entries(context.data.attributes)) {
             v.label = game.i18n.localize(CONFIG.APOTHEOSIS.attributes[k]) ?? k
+
+            // Get attribute modifiers from race
+            if (context.race !== undefined) {
+                v.value =
+                    v.value + context.race.data.attributeModifiers[k].value
+            }
+
+            // Get attribute modifiers from background
+            if (context.background !== undefined) {
+                v.value =
+                    v.value +
+                    context.background.data.attributeModifiers[k].value
+            }
+
+            // todo get attribute and other modifiers from abilities
         }
     }
 
@@ -98,6 +111,7 @@ export class ApotheosisActorSheet extends ActorSheet {
         }
         const items = []
         const features = []
+        const abilities = []
         const spells = {
             0: [],
             1: [],
@@ -110,6 +124,8 @@ export class ApotheosisActorSheet extends ActorSheet {
             8: [],
             9: [],
         }
+        let race
+        let background
 
         // Iterate through items, allocating to containers
         for (let i of context.items) {
@@ -117,16 +133,23 @@ export class ApotheosisActorSheet extends ActorSheet {
             // Append to gear.
             if (i.type === "weapon") {
                 gear.weapons.push(i)
-            }
-            if (i.type === "armor") {
+            } else if (i.type === "armor") {
                 gear.armor.push(i)
-            }
-            if (i.type === "item") {
+            } else if (i.type === "item") {
                 items.push(i)
             }
-            // Append to features.
+            // Append to features, set race and background.
             else if (i.type === "feature") {
                 features.push(i)
+            } else if (i.type === "race") {
+                features.push(i)
+                // todo add race abilities
+                race = i
+            } else if (i.type === "background") {
+                features.push(i)
+                background = i
+            } else if (i.type === "ability") {
+                abilities.push(i)
             }
             // Append to spells.
             else if (i.type === "spell") {
@@ -141,6 +164,9 @@ export class ApotheosisActorSheet extends ActorSheet {
         context.items = items
         context.features = features
         context.spells = spells
+        context.race = race
+        context.background = background
+        context.abilities = abilities
     }
 
     /* -------------------------------------------- */

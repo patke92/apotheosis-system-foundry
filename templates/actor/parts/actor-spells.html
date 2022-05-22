@@ -1,14 +1,14 @@
 <ol class="items-list">
     {{#each spells as |spells spellCost|}}
     <li class="item flexrow items-header">
-        <div class="item-name">Level {{spellCost}} Spells</div>
+        <div class="item-name">{{spellCost}}-Cost Spells</div>
         <div class="item-controls">
             <a
                 class="item-control item-create"
                 title="Create item"
                 data-type="spell"
-                data-spell-level="{{spellCost}}"
-                ><i class="fas fa-plus"></i> Add LVL {{spellCost}}</a
+                data-spell-cost="{{spellCost}}"
+                ><i class="fas fa-plus"></i> Add Cost {{spellCost}}</a
             >
         </div>
     </li>

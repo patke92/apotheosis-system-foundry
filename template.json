@@ -4,10 +4,9 @@
         "templates": {
             "base": {
                 "EP": {
-                    "value": 10,
-
+                    "value": 0,
                     "min": 0,
-                    "max": 10
+                    "max": 0
                 },
                 "mana": {
                     "value": 0,
@@ -21,32 +20,44 @@
             "templates": ["base"],
             "attributes": {
                 "str": {
-                    "value": 0
+                    "value": 0,
+                    "progression": 0
                 },
                 "dex": {
-                    "value": 0
+                    "value": 0,
+                    "progression": 0
                 },
                 "con": {
-                    "value": 0
+                    "value": 0,
+                    "progression": 0
                 },
                 "int": {
-                    "value": 0
+                    "value": 0,
+                    "progression": 0
                 },
                 "cha": {
-                    "value": 0
+                    "value": 0,
+                    "progression": 0
                 },
-                "luk": {
+                "luck": {
                     "value": 0
                 }
-            },
-            "abilities": []
+            }
         },
         "npc": {
             "templates": ["base"]
         }
     },
     "Item": {
-        "types": ["item", "weapon", "armor", "feature", "spell"],
+        "types": [
+            "item",
+            "weapon",
+            "armor",
+            "race",
+            "background",
+            "spell",
+            "ability"
+        ],
         "templates": {
             "base": {
                 "description": ""
@@ -54,6 +65,14 @@
             "genericItem": {
                 "quantity": 1,
                 "weight": 0
+            },
+            "attributeModifiers": {
+                "str": { "value": 0 },
+                "dex": { "value": 0 },
+                "con": { "value": 0 },
+                "int": { "value": 0 },
+                "cha": { "value": 0 },
+                "luck": { "value": 0 }
             }
         },
         "item": {
@@ -68,20 +87,18 @@
             "templates": ["base", "genericItem"],
             "defense": 0
         },
-        "feature": {
-            "templates": ["base"],
-            "attributeModifiers": {
-                "str": 0,
-                "dex": 0,
-                "con": 0,
-                "int": 0,
-                "cha": 0
-            },
-            "abilities": []
+        "race": {
+            "templates": ["base", "attributeModifiers"]
+        },
+        "background": {
+            "templates": ["base", "attributeModifiers"]
         },
         "spell": {
             "templates": ["base"],
             "spellCost": 1
+        },
+        "ability": {
+            "templates": ["base"]
         }
     }
 }

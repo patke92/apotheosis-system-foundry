@@ -21,7 +21,7 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="attributes">Attributes</a>
+        <a class="item" data-tab="effects">Effects</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -33,17 +33,8 @@
         </div>
 
         {{!-- Attributes Tab --}}
-        <div class="tab attributes" data-group="primary" data-tab="attributes">
-            {{!-- As you add new fields, add them in here! --}}
-            <div class="resource">
-                <label class="resource-label">Spell Cost</label>
-                <input
-                    type="text"
-                    name="data.spellCost"
-                    value="{{data.spellCost}}"
-                    data-dtype="Number"
-                />
-            </div>
+        <div class="tab effects" data-group="primary" data-tab="effects">
+            {{> "systems/apotheosis/templates/actor/parts/actor-effects.html"}}
         </div>
     </section>
 </form>

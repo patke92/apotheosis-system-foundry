@@ -16,7 +16,7 @@ APOTHEOSIS.attributes = {
     con: "APOTHEOSIS.AttributeCon",
     int: "APOTHEOSIS.AttributeInt",
     cha: "APOTHEOSIS.AttributeCha",
-    luk: "APOTHEOSIS.AttributeLuk",
+    luck: "APOTHEOSIS.AttributeLuck",
 }
 
 APOTHEOSIS.attributeAbbreviations = {
@@ -25,5 +25,5 @@ APOTHEOSIS.attributeAbbreviations = {
     con: "APOTHEOSIS.AttributeConAbbr",
     int: "APOTHEOSIS.AttributeIntAbbr",
     cha: "APOTHEOSIS.AttributeChaAbbr",
-    luk: "APOTHEOSIS.AttributeLukAbbr",
+    luck: "APOTHEOSIS.AttributeLuckAbbr",
 }

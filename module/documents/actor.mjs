@@ -47,14 +47,16 @@ export class ApotheosisActor extends Actor {
         // Make modifications to data here. For example:
         const data = actorData.data
 
-        console.log("_prepareCharacterData")
-        console.log(data)
+        data.EP.max =
+            data.attributes.con.value * 5 +
+            data.attributes.str.value * 2 +
+            data.attributes.dex.value * 2
 
-        // Loop through ability scores, and add their modifiers to our sheet output.
-        // for (let [key, ability] of Object.entries(data.abilities)) {
-        //   // Calculate the modifier using d20 rules.
-        //   ability.mod = Math.floor((ability.value - 10) / 2);
-        // }
+        if (data.EP.max < 2) {
+            data.EP.max = 2
+        }
+
+        // todo check if character has caster and set mana.max
     }
 
     /**
@@ -65,7 +67,6 @@ export class ApotheosisActor extends Actor {
 
         // Make modifications to data here. For example:
         const data = actorData.data
-        data.xp = data.cr * data.cr * 100
     }
 
     /**
