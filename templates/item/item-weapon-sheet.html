@@ -44,7 +44,7 @@ when possible. --}}
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="attributes">Attributes</a>
+        <a class="item" data-tab="data">Data</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -55,8 +55,8 @@ when possible. --}}
             rollData=rollData button=true owner=owner editable=editable}}
         </div>
 
-        {{!-- Attributes Tab --}}
-        <div class="tab attributes" data-group="primary" data-tab="attributes">
+        {{!-- Data Tab --}}
+        <div class="tab data" data-group="primary" data-tab="data">
             {{!-- As you add new fields, add them in here! --}}
             <div class="resource">
                 <label class="resource-label">Roll Formula</label>
@@ -65,6 +65,24 @@ when possible. --}}
                     name="data.formula"
                     value="{{data.formula}}"
                     data-dtype="String"
+                />
+            </div>
+            <div class="resource">
+                <label class="resource-label">Equipped</label>
+                <input
+                    type="checkbox"
+                    name="data.equipped"
+                    {{checked
+                    data.equipped}}
+                />
+            </div>
+            <div class="resource">
+                <label class="resource-label">Proficient</label>
+                <input
+                    type="checkbox"
+                    name="data.proficient"
+                    {{checked
+                    data.proficient}}
                 />
             </div>
         </div>

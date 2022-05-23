@@ -13,6 +13,12 @@
                     "min": 0,
                     "max": 0
                 },
+                "defense": {
+                    "value": 0
+                },
+                "wounds": {
+                    "value": 0
+                },
                 "biography": ""
             }
         },
@@ -20,29 +26,47 @@
             "templates": ["base"],
             "attributes": {
                 "str": {
-                    "value": 0,
-                    "progression": 0
+                    "total": 0,
+                    "base": 0,
+                    "progress": 0,
+                    "training": false,
+                    "trainingPossible": true
                 },
                 "dex": {
-                    "value": 0,
-                    "progression": 0
+                    "total": 0,
+                    "base": 0,
+                    "progress": 0,
+                    "training": false,
+                    "trainingPossible": true
                 },
                 "con": {
-                    "value": 0,
-                    "progression": 0
+                    "total": 0,
+                    "base": 0,
+                    "progress": 0,
+                    "training": false,
+                    "trainingPossible": true
                 },
                 "int": {
-                    "value": 0,
-                    "progression": 0
+                    "total": 0,
+                    "base": 0,
+                    "progress": 0,
+                    "training": false,
+                    "trainingPossible": true
                 },
                 "cha": {
-                    "value": 0,
-                    "progression": 0
+                    "total": 0,
+                    "base": 0,
+                    "progress": 0,
+                    "training": false,
+                    "trainingPossible": true
                 },
                 "luck": {
-                    "value": 0
+                    "total": 0,
+                    "base": 0,
+                    "trainingPossible": false
                 }
-            }
+            },
+            "alignment": ""
         },
         "npc": {
             "templates": ["base"]
@@ -65,14 +89,6 @@
             "genericItem": {
                 "quantity": 1,
                 "weight": 0
-            },
-            "attributeModifiers": {
-                "str": { "value": 0 },
-                "dex": { "value": 0 },
-                "con": { "value": 0 },
-                "int": { "value": 0 },
-                "cha": { "value": 0 },
-                "luck": { "value": 0 }
             }
         },
         "item": {
@@ -80,25 +96,56 @@
         },
         "weapon": {
             "templates": ["base", "genericItem"],
-            "formula": "d20 + @attributes.str.value",
-            "damage": "d6"
+            "formula": "d20 + @attributes.str.total",
+            "damage": "d6",
+            "proficient": false,
+            "equipped": false
         },
         "armor": {
             "templates": ["base", "genericItem"],
-            "defense": 0
+            "defense": 0,
+            "proficient": false,
+            "equipped": false
         },
         "race": {
-            "templates": ["base", "attributeModifiers"]
+            "templates": ["base"],
+            "attributeModifiers": {
+                "str": { "value": 0 },
+                "dex": { "value": 0 },
+                "con": { "value": 0 },
+                "int": { "value": 0 },
+                "cha": { "value": 0 },
+                "luck": { "value": 0 }
+            },
+            "abilities": []
         },
         "background": {
-            "templates": ["base", "attributeModifiers"]
+            "templates": ["base"],
+            "attributeModifiers": {
+                "str": { "value": 0 },
+                "dex": { "value": 0 },
+                "con": { "value": 0 },
+                "int": { "value": 0 },
+                "cha": { "value": 0 },
+                "luck": { "value": 0 }
+            },
+            "abilities": []
         },
         "spell": {
             "templates": ["base"],
             "spellCost": 1
         },
         "ability": {
-            "templates": ["base"]
+            "templates": ["base"],
+            "attributeModifiers": {
+                "str": { "value": 0 },
+                "dex": { "value": 0 },
+                "con": { "value": 0 },
+                "int": { "value": 0 },
+                "cha": { "value": 0 },
+                "luck": { "value": 0 }
+            },
+            "EPModifier": 0
         }
     }
 }

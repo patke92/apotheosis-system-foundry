@@ -408,6 +408,11 @@
     margin-right: 5px;
 }
 
+.apotheosis .items-list .item .item-name .armor-equipped-icon,
+.weapon-equipped-icon {
+    margin-left: 1rem;
+}
+
 .apotheosis .items-list .item-prop {
     text-align: center;
     border-left: 1px solid #c9c7b8;

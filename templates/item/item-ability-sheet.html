@@ -21,7 +21,7 @@
     {{!-- Sheet Tab Navigation --}}
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="effects">Effects</a>
+        <a class="item" data-tab="data">Data</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -32,9 +32,32 @@
             rollData=rollData button=true owner=owner editable=editable}}
         </div>
 
-        {{!-- Attributes Tab --}}
-        <div class="tab effects" data-group="primary" data-tab="effects">
-            {{> "systems/apotheosis/templates/actor/parts/actor-effects.html"}}
+        {{!-- Data Tab --}}
+        <div class="tab data" data-group="primary" data-tab="data">
+            {{#each data.attributeModifiers as |attribute key|}}
+            <div class="attribute flexrow flex-group-center">
+                <label
+                    for="data.attributeModifiers.{{key}}.value"
+                    class="resource-label align-left"
+                    data-label="{{attribute}}"
+                    >{{attribute.label}}</label
+                >
+                <input
+                    type="text"
+                    name="data.attributeModifiers.{{key}}.value"
+                    value="{{attribute.value}}"
+                    data-dtype="Number"
+                />
+            </div>
+            {{/each}}
+            <div class="attribute flexrow flex-group-center">
+                <label class="align-left">EPModifier</label>
+                <input
+                    name="data.EPModifier"
+                    type="Number"
+                    value="{{data.EPModifier}}"
+                />
+            </div>
         </div>
     </section>
 </form>

@@ -47,15 +47,6 @@ export class ApotheosisActor extends Actor {
         // Make modifications to data here. For example:
         const data = actorData.data
 
-        data.EP.max =
-            data.attributes.con.value * 5 +
-            data.attributes.str.value * 2 +
-            data.attributes.dex.value * 2
-
-        if (data.EP.max < 2) {
-            data.EP.max = 2
-        }
-
         // todo check if character has caster and set mana.max
     }
 
@@ -90,11 +81,11 @@ export class ApotheosisActor extends Actor {
 
         // Copy the ability scores to the top level, so that rolls can use
         // formulas like `@str.value + 4`.
-        if (data.attributes) {
-            for (let [k, v] of Object.entries(data.attributes)) {
-                data[k] = foundry.utils.deepClone(v)
-            }
-        }
+        // if (data.attributes) {
+        //     for (let [k, v] of Object.entries(data.attributes)) {
+        //         data[k] = foundry.utils.deepClone(v)
+        //     }
+        // }
     }
 
     /**

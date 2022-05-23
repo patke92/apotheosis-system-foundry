@@ -22,7 +22,6 @@
     <nav class="sheet-tabs tabs" data-group="primary">
         <a class="item" data-tab="description">Description</a>
         <a class="item" data-tab="data">Data</a>
-        <a class="item" data-tab="effects">Effects</a>
     </nav>
 
     {{!-- Sheet Body --}}
@@ -33,6 +32,7 @@
             rollData=rollData button=true owner=owner editable=editable}}
         </div>
 
+        {{!-- Data Tab --}}
         <div class="tab data" data-group="primary" data-tab="data">
             {{#each data.attributeModifiers as |attribute key|}}
             <div class="attribute flexrow flex-group-center">
@@ -50,11 +50,6 @@
                 />
             </div>
             {{/each}}
-        </div>
-
-        {{!-- Attributes Tab --}}
-        <div class="tab effects" data-group="primary" data-tab="effects">
-            {{> "systems/apotheosis/templates/actor/parts/actor-effects.html"}}
         </div>
     </section>
 </form>

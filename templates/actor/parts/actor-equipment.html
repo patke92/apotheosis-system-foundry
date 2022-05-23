@@ -24,6 +24,10 @@
                 /></a>
             </div>
             <h4>{{item.name}}</h4>
+            <i
+                title="Equipped"
+                class="weapon-equipped-icon fas {{#if item.data.equipped}}fa-check{{else}}{{/if}}"
+            ></i>
         </div>
         <div class="item-formula item-prop">{{item.data.formula}}</div>
         <div class="item-controls">
@@ -63,6 +67,10 @@
                 /></a>
             </div>
             <h4>{{item.name}}</h4>
+            <i
+                title="Equipped"
+                class="armor-equipped-icon fas {{#if item.data.equipped}}fa-check{{else}}{{/if}}"
+            ></i>
         </div>
         <div class="item-formula item-prop">{{item.data.defense}}</div>
         <div class="item-controls">

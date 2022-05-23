@@ -2,14 +2,21 @@
     "name": "apotheosis",
     "title": "Apotheosis",
     "description": "The Apotheosis system for FoundryVTT!",
-    "version": "1.0.0",
+    "version": "0.2.1",
     "minimumCoreVersion": "0.8.6",
     "compatibleCoreVersion": "9",
     "author": "patke",
     "esmodules": ["module/apotheosis.mjs"],
     "styles": ["css/apotheosis.css"],
     "scripts": [],
-    "packs": [],
+    "packs": [
+        {
+            "name": "Races",
+            "label": "Apotheosis Demo Races",
+            "path": "packs/races.db",
+            "type": "Item"
+        }
+    ],
     "languages": [
         {
             "lang": "en",

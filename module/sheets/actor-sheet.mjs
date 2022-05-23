@@ -61,9 +61,6 @@ export class ApotheosisActorSheet extends ActorSheet {
         // Add roll data for TinyMCE editors.
         context.rollData = context.actor.getRollData()
 
-        // Prepare active effects
-        context.effects = prepareActiveEffectCategories(this.actor.effects)
-
         return context
     }
 
@@ -79,20 +76,62 @@ export class ApotheosisActorSheet extends ActorSheet {
         for (let [k, v] of Object.entries(context.data.attributes)) {
             v.label = game.i18n.localize(CONFIG.APOTHEOSIS.attributes[k]) ?? k
 
+            v.total = v.base
+
             // Get attribute modifiers from race
             if (context.race !== undefined) {
-                v.value =
-                    v.value + context.race.data.attributeModifiers[k].value
+                v.total =
+                    v.total + context.race.data.attributeModifiers[k].value
             }
 
             // Get attribute modifiers from background
             if (context.background !== undefined) {
-                v.value =
-                    v.value +
+                v.total =
+                    v.total +
                     context.background.data.attributeModifiers[k].value
             }
 
-            // todo get attribute and other modifiers from abilities
+            for (let ability of context.abilities) {
+                v.total = v.total + ability.data.attributeModifiers[k].value
+            }
+
+            // Update the actor with the new total
+            const attributeToUpdate = "data.attributes." + k + ".total"
+            this.actor.update({
+                [attributeToUpdate]: v.total,
+            })
+        }
+
+        // Handle EP max
+        context.data.EP.max =
+            context.data.attributes.con.total * 5 +
+            context.data.attributes.str.total * 2 +
+            context.data.attributes.dex.total * 2
+
+        if (context.data.EP.max < 2) {
+            context.data.EP.max = 2
+        }
+
+        // Update the actor with the new EP max
+        this.actor.update({
+            "data.EP.max": context.data.EP.max,
+        })
+
+        for (let ability of context.abilities) {
+            context.data.EP.max = context.data.EP.max + ability.data.EPModifier
+        }
+
+        // todo Handle Mana max
+
+        context.data.defense.value = Math.ceil(
+            10 + context.data.attributes.dex.total / 2
+        )
+
+        for (let armor of context.gear.armor) {
+            if (armor.data.equipped === true) {
+                context.data.defense.value =
+                    context.data.defense.value + armor.data.defense
+            }
         }
     }
 
@@ -120,9 +159,6 @@ export class ApotheosisActorSheet extends ActorSheet {
             4: [],
             5: [],
             6: [],
-            7: [],
-            8: [],
-            9: [],
         }
         let race
         let background
@@ -185,6 +221,66 @@ export class ApotheosisActorSheet extends ActorSheet {
         // -------------------------------------------------------------
         // Everything below here is only needed if the sheet is editable
         if (!this.isEditable) return
+
+        html.find(".increase-progress").click((ev) => {
+            ev.preventDefault()
+
+            const attribute = ev.currentTarget.classList[1]
+            const valueToChange = "data.attributes." + attribute + ".progress"
+            const attributeValue =
+                this.actor.data.data.attributes[attribute].base
+            const newAttributeValue = attributeValue + 1
+            const attributeToAdjust = "data.attributes." + attribute + ".base"
+            const trainingBoolean =
+                this.actor.data.data.attributes[attribute].training
+            const trainingBooleanString =
+                "data.attributes." + attribute + ".training"
+            let newProgressValue =
+                this.actor.data.data.attributes[attribute].progress +
+                (trainingBoolean ? 2 : 1)
+
+            // increase ability base value
+            if (
+                (attributeValue === 0 ||
+                    newProgressValue >= attributeValue * 10) &&
+                newProgressValue >= 10
+            ) {
+                const oldAttributeValue = attributeValue
+                this.actor.update({
+                    [attributeToAdjust]: newAttributeValue,
+                })
+
+                if (trainingBoolean) {
+                    this.actor.update({
+                        [trainingBooleanString]: false,
+                    })
+                }
+                const rest =
+                    newProgressValue -
+                    (oldAttributeValue !== 0 ? oldAttributeValue : 1) * 10
+
+                if (rest < 0) rest = 0
+
+                newProgressValue = rest
+            }
+
+            // set new ability progress value
+            this.actor.update({
+                [valueToChange]: newProgressValue,
+            })
+        })
+
+        html.find(".decrease-progress").click((ev) => {
+            ev.preventDefault()
+            const attribute = ev.currentTarget.classList[1]
+            const valueToChange = "data.attributes." + attribute + ".progress"
+            let newProgressValue =
+                this.actor.data.data.attributes[attribute].progress - 1
+            if (newProgressValue < 0) newProgressValue = 0
+            this.actor.update({
+                [valueToChange]: newProgressValue,
+            })
+        })
 
         // Add Inventory Item
         html.find(".item-create").click(this._onItemCreate.bind(this))
