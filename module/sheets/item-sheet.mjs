@@ -42,10 +42,18 @@ export class ApotheosisItemSheet extends ItemSheet {
 
         if (itemData.type === "weapon") {
             const weaponAttackAttribute = itemData.data.weaponAttackAttribute
-            if (itemData.data.proficient === true) {
-                itemData.data.formula = `d20 + @attributes.${weaponAttackAttribute}.total * 1.5`
-            } else {
-                itemData.data.formula = `d20 + @attributes.${weaponAttackAttribute}.total`
+            const weaponDamageAttribute = itemData.data.weaponDamageAttribute
+            console.log(itemData)
+            if (itemData.data.customDamageFormula === false) {
+                itemData.data.damageFormula = `${itemData.data.damageDie} + (@attributes.${weaponDamageAttribute}.total / 2)`
+            }
+
+            if (itemData.data.customAttackFormula === false) {
+                if (itemData.data.expertise === true) {
+                    itemData.data.formula = `d20 + (@attributes.${weaponAttackAttribute}.total * 1.5)`
+                } else {
+                    itemData.data.formula = `d20 + @attributes.${weaponAttackAttribute}.total`
+                }
             }
         }
 
@@ -68,6 +76,8 @@ export class ApotheosisItemSheet extends ItemSheet {
                     game.i18n.localize(CONFIG.APOTHEOSIS.attributes[k]) ?? k
             }
         }
+
+        console.log(context)
 
         return context
     }

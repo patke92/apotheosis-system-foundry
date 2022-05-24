@@ -11,6 +11,13 @@
     cursor: pointer;
 }
 
+button.rollable:hover,
+button.rollable:focus {
+    color: #000;
+    text-shadow: none;
+    cursor: default;
+}
+
 .grid,
 .grid-2col {
     display: grid;

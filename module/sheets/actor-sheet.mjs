@@ -282,6 +282,18 @@ export class ApotheosisActorSheet extends ActorSheet {
             })
         })
 
+        html.find(".roll-damage").click((ev) => {
+            console.log(ev.currentTarget.attributes.damageFormula)
+            const formula = ev.currentTarget.attributes.damageFormula
+            const roll = new Roll(formula.value, this.actor.getRollData())
+            roll.toMessage({
+                speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+                flavor: "Damage",
+                rollMode: game.settings.get("core", "rollMode"),
+            })
+            return roll
+        })
+
         // Add Inventory Item
         html.find(".item-create").click(this._onItemCreate.bind(this))
 
@@ -354,9 +366,12 @@ export class ApotheosisActorSheet extends ActorSheet {
             if (dataset.rollType == "item") {
                 const itemId = element.closest(".item").dataset.itemId
                 const item = this.actor.items.get(itemId)
+                console.log(item)
                 if (item) return item.roll()
             }
         }
+
+        console.log(dataset)
 
         // Handle rolls that supply the formula directly.
         if (dataset.roll) {

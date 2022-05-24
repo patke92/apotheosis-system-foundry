@@ -6,7 +6,8 @@
                 "EP": {
                     "value": 0,
                     "min": 0,
-                    "max": 0
+                    "max": 0,
+                    "temporary": 0
                 },
                 "mana": {
                     "value": 0,
@@ -14,7 +15,8 @@
                     "max": 0
                 },
                 "defense": {
-                    "value": 0
+                    "value": 0,
+                    "damageReduction": 0
                 },
                 "wounds": {
                     "value": 0
@@ -66,7 +68,13 @@
                     "trainingPossible": false
                 }
             },
-            "alignment": ""
+            "alignment": "",
+            "money": {
+                "gold": 0,
+                "electrum": 0,
+                "silver": 0,
+                "copper": 0
+            }
         },
         "npc": {
             "templates": ["base"]
@@ -88,7 +96,13 @@
             },
             "genericItem": {
                 "quantity": 1,
-                "weight": 0
+                "weight": 0,
+                "value": {
+                    "gold": 0,
+                    "electrum": 0,
+                    "silver": 0,
+                    "copper": 0
+                }
             }
         },
         "item": {
@@ -98,14 +112,19 @@
             "templates": ["base", "genericItem"],
             "weaponAttackAttribute": "str",
             "formula": "d20 + @attributes.str.total",
-            "damage": "d6",
-            "proficient": false,
+            "customAttackFormula": false,
+            "weaponDamageAttribute": "str",
+            "damageDie": "d4",
+            "damageFormula": "d6 + (@attributes.str.total / 2)",
+            "customDamageFormula": false,
+            "expertise": false,
             "equipped": false
         },
         "armor": {
             "templates": ["base", "genericItem"],
             "defense": 0,
-            "proficient": false,
+            "armorType": "light",
+            "expertise": false,
             "equipped": false
         },
         "race": {

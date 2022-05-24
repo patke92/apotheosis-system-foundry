@@ -57,7 +57,26 @@ when possible. --}}
 
         {{!-- Data Tab --}}
         <div class="tab data" data-group="primary" data-tab="data">
-            {{!-- As you add new fields, add them in here! --}}
+            <div class="flexrow">
+                <div class="resource">
+                    <label class="resource-label">Equipped</label>
+                    <input
+                        type="checkbox"
+                        name="data.equipped"
+                        {{checked
+                        data.equipped}}
+                    />
+                </div>
+                <div class="resource">
+                    <label class="resource-label">expertise</label>
+                    <input
+                        type="checkbox"
+                        name="data.expertise"
+                        {{checked
+                        data.expertise}}
+                    />
+                </div>
+            </div>
             <div class="resource">
                 <label class="resource-label">Attack bonus attribute</label>
                 <input
@@ -68,7 +87,16 @@ when possible. --}}
                 />
             </div>
             <div class="resource">
-                <label class="resource-label">Roll Formula</label>
+                <label class="resource-label">Custom attack formula</label>
+                <input
+                    type="checkbox"
+                    name="data.customAttackFormula"
+                    {{checked
+                    data.customAttackFormula}}
+                />
+            </div>
+            <div class="resource">
+                <label class="resource-label">Attack roll Formula</label>
                 <input
                     type="text"
                     name="data.formula"
@@ -76,22 +104,42 @@ when possible. --}}
                     data-dtype="String"
                 />
             </div>
+            <div class="flexrow">
+                <div class="resource">
+                    <label class="resource-label">Damage bonus attribute</label>
+                    <input
+                        type="text"
+                        name="data.weaponDamageAttribute"
+                        value="{{data.weaponDamageAttribute}}"
+                        data-dtype="String"
+                    />
+                </div>
+                <div class="resource">
+                    <label class="resource-label">Damage die</label>
+                    <input
+                        type="text"
+                        name="data.damageDie"
+                        value="{{data.damageDie}}"
+                        data-dtype="String"
+                    />
+                </div>
+            </div>
             <div class="resource">
-                <label class="resource-label">Equipped</label>
+                <label class="resource-label">Custom damage formula</label>
                 <input
                     type="checkbox"
-                    name="data.equipped"
+                    name="data.customDamageFormula"
                     {{checked
-                    data.equipped}}
+                    data.customDamageFormula}}
                 />
             </div>
             <div class="resource">
-                <label class="resource-label">Proficient</label>
+                <label class="resource-label">Damage roll Formula</label>
                 <input
-                    type="checkbox"
-                    name="data.proficient"
-                    {{checked
-                    data.proficient}}
+                    type="text"
+                    name="data.damageFormula"
+                    value="{{data.damageFormula}}"
+                    data-dtype="String"
                 />
             </div>
         </div>
