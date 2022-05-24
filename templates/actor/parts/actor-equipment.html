@@ -28,8 +28,14 @@
                 class="weapon-equipped-icon fas {{#if item.data.equipped}}fa-check{{else}}{{/if}}"
             ></i>
         </div>
-        <button class="rollable" data-roll-type="item">Attack</button>
-        <button class="roll-damage" damageFormula="{{item.data.damageFormula}}">
+        <button class="rollable" data-roll-type="item" type="button">
+            Attack
+        </button>
+        <button
+            class="roll-damage"
+            damageFormula="{{item.data.damageFormula}}"
+            type="button"
+        >
             Damage
         </button>
         <!-- <div class="item-formula item-prop">{{item.data.formula}}</div> -->

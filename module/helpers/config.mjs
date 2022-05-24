@@ -27,3 +27,28 @@ APOTHEOSIS.attributeAbbreviations = {
     cha: "APOTHEOSIS.AttributeChaAbbr",
     luck: "APOTHEOSIS.AttributeLuckAbbr",
 }
+
+APOTHEOSIS.checks = {
+    athletics: "Athletics",
+    grappling: "Grappling",
+    acrobatics: "Acrobatics",
+    reflex: "Reflex",
+    stealth: "Stealth",
+    awareness: "Awareness",
+    endurance: "Endurance",
+    survival: "Survival",
+    arcaneKnowledge: "Arcane Knowledge",
+    comprehension: "Comprehension",
+    history: "History",
+    investigation: "Investigation",
+    medicine: "Medicine",
+    nature: "Nature",
+    religion: "Religion",
+    animalHandling: "Animal Handling",
+    deception: "Deception",
+    distraction: "Disctraction",
+    insight: "Insight",
+    intimidation: "Intimidation",
+    persuasion: "Persuasion",
+    sleightOfHand: "Sleight of Hand",
+}

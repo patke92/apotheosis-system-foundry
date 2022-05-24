@@ -13,8 +13,8 @@ export class ApotheosisActorSheet extends ActorSheet {
         return mergeObject(super.defaultOptions, {
             classes: ["apotheosis", "sheet", "actor"],
             template: "systems/apotheosis/templates/actor/actor-sheet.html",
-            width: 600,
-            height: 600,
+            width: 720,
+            height: 720,
             tabs: [
                 {
                     navSelector: ".sheet-tabs",
@@ -95,12 +95,27 @@ export class ApotheosisActorSheet extends ActorSheet {
                 v.total = v.total + ability.data.attributeModifiers[k].value
             }
 
-            // Update the actor with the new total
-            const attributeToUpdate = "data.attributes." + k + ".total"
+            if (v.total !== this.actor.data.data.attributes[k].total) {
+                // Update the actor with the new total
+                const attributeToUpdate = "data.attributes." + k + ".total"
+                this.actor.update({
+                    [attributeToUpdate]: v.total,
+                })
+            }
+        }
+
+        for (let [checkName, v] of Object.entries(context.data.checks)) {
+            v.label =
+                game.i18n.localize(CONFIG.APOTHEOSIS.checks[checkName]) ??
+                checkName
+            v.base = context.data.attributes[v.attribute].total
+            const checkToUpdate = "data.checks." + checkName + ".base"
             this.actor.update({
-                [attributeToUpdate]: v.total,
+                [checkToUpdate]: v.base,
             })
         }
+
+        // todo handle race and background check modifiers
 
         // Handle EP max
         context.data.EP.max =
@@ -112,13 +127,15 @@ export class ApotheosisActorSheet extends ActorSheet {
             context.data.EP.max = 2
         }
 
-        // Update the actor with the new EP max
-        this.actor.update({
-            "data.EP.max": context.data.EP.max,
-        })
-
         for (let ability of context.abilities) {
             context.data.EP.max = context.data.EP.max + ability.data.EPModifier
+        }
+
+        if (context.data.EP.max !== this.actor.data.data.EP.max) {
+            // Update the actor with the new EP max
+            this.actor.update({
+                "data.EP.max": context.data.EP.max,
+            })
         }
 
         // todo Handle Mana max
@@ -131,7 +148,16 @@ export class ApotheosisActorSheet extends ActorSheet {
             if (armor.data.equipped === true) {
                 context.data.defense.value =
                     context.data.defense.value + armor.data.defense
+                context.data.defense.damageReduction =
+                    context.data.defense.damageReduction +
+                    armor.data.damageReduction
             }
+        }
+
+        if (context.data.defense.value !== this.actor.data.data.defense.value) {
+            this.actor.update({
+                "data.defense.value": context.data.defense.value,
+            })
         }
     }
 
@@ -179,7 +205,6 @@ export class ApotheosisActorSheet extends ActorSheet {
                 features.push(i)
             } else if (i.type === "race") {
                 features.push(i)
-                // todo add race abilities
                 race = i
             } else if (i.type === "background") {
                 features.push(i)
@@ -283,7 +308,6 @@ export class ApotheosisActorSheet extends ActorSheet {
         })
 
         html.find(".roll-damage").click((ev) => {
-            console.log(ev.currentTarget.attributes.damageFormula)
             const formula = ev.currentTarget.attributes.damageFormula
             const roll = new Roll(formula.value, this.actor.getRollData())
             roll.toMessage({
@@ -366,12 +390,9 @@ export class ApotheosisActorSheet extends ActorSheet {
             if (dataset.rollType == "item") {
                 const itemId = element.closest(".item").dataset.itemId
                 const item = this.actor.items.get(itemId)
-                console.log(item)
                 if (item) return item.roll()
             }
         }
-
-        console.log(dataset)
 
         // Handle rolls that supply the formula directly.
         if (dataset.roll) {

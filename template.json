@@ -12,7 +12,8 @@
                 "mana": {
                     "value": 0,
                     "min": 0,
-                    "max": 0
+                    "max": 0,
+                    "expenditureLimit": 0
                 },
                 "defense": {
                     "value": 0,
@@ -21,6 +22,8 @@
                 "wounds": {
                     "value": 0
                 },
+                "movementSpeed": 0,
+                "encumbranceWeight": 0,
                 "biography": ""
             }
         },
@@ -30,6 +33,7 @@
                 "str": {
                     "total": 0,
                     "base": 0,
+                    "saveBonus": 0,
                     "progress": 0,
                     "training": false,
                     "trainingPossible": true
@@ -37,6 +41,7 @@
                 "dex": {
                     "total": 0,
                     "base": 0,
+                    "saveBonus": 0,
                     "progress": 0,
                     "training": false,
                     "trainingPossible": true
@@ -44,6 +49,7 @@
                 "con": {
                     "total": 0,
                     "base": 0,
+                    "saveBonus": 0,
                     "progress": 0,
                     "training": false,
                     "trainingPossible": true
@@ -51,6 +57,7 @@
                 "int": {
                     "total": 0,
                     "base": 0,
+                    "saveBonus": 0,
                     "progress": 0,
                     "training": false,
                     "trainingPossible": true
@@ -58,6 +65,7 @@
                 "cha": {
                     "total": 0,
                     "base": 0,
+                    "saveBonus": 0,
                     "progress": 0,
                     "training": false,
                     "trainingPossible": true
@@ -65,11 +73,149 @@
                 "luck": {
                     "total": 0,
                     "base": 0,
+                    "saveBonus": 0,
                     "trainingPossible": false
                 }
             },
+            "checks": {
+                "athletics": {
+                    "attribute": "str",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "grappling": {
+                    "attribute": "str",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "acrobatics": {
+                    "attribute": "dex",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "reflex": {
+                    "attribute": "dex",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "stealth": {
+                    "attribute": "dex",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "awareness": {
+                    "attribute": "con",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "endurance": {
+                    "attribute": "con",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "survival": {
+                    "attribute": "con",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "arcaneKnowledge": {
+                    "attribute": "int",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "comprehension": {
+                    "attribute": "int",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "history": {
+                    "attribute": "int",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "investigation": {
+                    "attribute": "int",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "medicine": {
+                    "attribute": "int",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "nature": {
+                    "attribute": "int",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "religion": {
+                    "attribute": "int",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "animalHandling": {
+                    "attribute": "cha",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "deception": {
+                    "attribute": "cha",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "distraction": {
+                    "attribute": "cha",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "insight": {
+                    "attribute": "cha",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "intimidation": {
+                    "attribute": "cha",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "persuasion": {
+                    "attribute": "cha",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                },
+                "sleightOfHand": {
+                    "attribute": "cha",
+                    "expertise": false,
+                    "base": 0,
+                    "total": 0
+                }
+            },
+            "spellcasting": false,
+            "maxManaFormula": "",
             "alignment": "",
             "money": {
+                "platinum": 0,
                 "gold": 0,
                 "electrum": 0,
                 "silver": 0,
@@ -98,6 +244,7 @@
                 "quantity": 1,
                 "weight": 0,
                 "value": {
+                    "platinum": 0,
                     "gold": 0,
                     "electrum": 0,
                     "silver": 0,
@@ -123,6 +270,7 @@
         "armor": {
             "templates": ["base", "genericItem"],
             "defense": 0,
+            "damageReduction": 0,
             "armorType": "light",
             "expertise": false,
             "equipped": false
@@ -137,7 +285,8 @@
                 "cha": { "value": 0 },
                 "luck": { "value": 0 }
             },
-            "abilities": []
+            "movementSpeed": 0,
+            "size": "medium"
         },
         "background": {
             "templates": ["base"],
@@ -148,8 +297,7 @@
                 "int": { "value": 0 },
                 "cha": { "value": 0 },
                 "luck": { "value": 0 }
-            },
-            "abilities": []
+            }
         },
         "spell": {
             "templates": ["base"],
@@ -165,7 +313,9 @@
                 "cha": { "value": 0 },
                 "luck": { "value": 0 }
             },
-            "EPModifier": 0
+            "EPModifier": 0,
+            "spellcasting": false,
+            "maxManaFormula": ""
         }
     }
 }

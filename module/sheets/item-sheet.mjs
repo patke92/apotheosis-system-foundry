@@ -43,7 +43,6 @@ export class ApotheosisItemSheet extends ItemSheet {
         if (itemData.type === "weapon") {
             const weaponAttackAttribute = itemData.data.weaponAttackAttribute
             const weaponDamageAttribute = itemData.data.weaponDamageAttribute
-            console.log(itemData)
             if (itemData.data.customDamageFormula === false) {
                 itemData.data.damageFormula = `${itemData.data.damageDie} + (@attributes.${weaponDamageAttribute}.total / 2)`
             }
@@ -76,8 +75,6 @@ export class ApotheosisItemSheet extends ItemSheet {
                     game.i18n.localize(CONFIG.APOTHEOSIS.attributes[k]) ?? k
             }
         }
-
-        console.log(context)
 
         return context
     }

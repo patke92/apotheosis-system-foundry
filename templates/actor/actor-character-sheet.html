@@ -46,13 +46,7 @@
                     />
                 </div>
             </div>
-            {{!-- The grid classes are defined in scss/global/_grid.scss. To
-            use, use both the "grid" and "grid-Ncol" class where "N" can be any
-            number from 1 to 12 and will create that number of columns. --}}
             <div class="resources grid grid-4col">
-                {{!-- "flex-group-center" is also defined in the _grid.scss file
-                and it will add a small amount of padding, a border, and will
-                center all of its child elements content and text. --}}
                 <div class="flexcol">
                     <div class="resource flex-group-center">
                         <label for="data.EP.value" class="resource-label"
@@ -77,14 +71,14 @@
                             />
                         </div>
                     </div>
-                    <div class="resource flex-group-center">
+                    <div class="resource">
                         <label for="data.EP.temporary" class="resource-label"
                             >Temp. EP
                         </label>
                         <input
                             type="number"
                             name="data.EP.temporary"
-                            class="temporary-ep"
+                            class="resource temporary-ep"
                             value="{{data.EP.temporary}}"
                             data-dtype="Number"
                         />
@@ -93,7 +87,7 @@
 
                 <div class="resource flex-group-center">
                     <label for="data.mana.value" class="resource-label"
-                        >Mana</label
+                        >Mana (Limit: {{data.mana.expenditureLimit}})</label
                     >
                     <div
                         class="resource-content flexrow flex-center flex-between"
@@ -114,7 +108,8 @@
                         />
                     </div>
                 </div>
-                <div>
+
+                <div class="resource">
                     <label class="resource-label"
                         >Defense (DR: {{data.defense.damageReduction}})</label
                     >
@@ -147,8 +142,8 @@
     <nav class="sheet-tabs tabs" data-group="primary">
         {{!-- Default tab is specified in actor-sheet.mjs --}}
         <a class="item" data-tab="attributes">Attributes</a>
-        <a class="item" data-tab="abilities">Abilities</a>
         <a class="item" data-tab="checks">Checks</a>
+        <a class="item" data-tab="abilities">Abilities</a>
         <a class="item" data-tab="equipment">Equipment</a>
         <a class="item" data-tab="items">Items</a>
         <a class="item" data-tab="spells">Spells</a>
@@ -174,7 +169,7 @@
                 {{#each data.attributes as |attribute key|}}
                 <div
                     class="attribute flexrow flex-group-center"
-                    style="margin-bottom: 0.5rem"
+                    style="margin-bottom: 0.25rem"
                 >
                     <label
                         for="data.attributes.{{key}}.total"
@@ -227,6 +222,66 @@
             </div>
         </div>
 
+        {{!-- Checks Tab --}}
+        <div class="tab checks" data-group="primary" data-tab="checks">
+            <div class="checks flexcol">
+                <div
+                    class="flexrow flex-group-center"
+                    style="border-bottom: 1px solid grey; margin-bottom: 0.5rem"
+                >
+                    <label class="resource-label align-left">Check</label>
+                    <label class="resource-label align-left">Expertise</label>
+                    <label class="resource-label align-left">Value</label>
+                </div>
+                {{#each data.checks as |check key|}}
+                <div
+                    class="check flexrow flex-group-center"
+                    style="margin-bottom: 0.25rem"
+                >
+                    {{#if check.expertise}}
+                    <label
+                        for="data.check.{{key}}.total"
+                        class="resource-label rollable align-left"
+                        data-roll="d20+(@checks.{{key}}.value * 1.5)"
+                        data-label="{{check.label}}"
+                        >{{check.label}}</label
+                    >
+                    {{else}}
+                    <label
+                        for="data.check.{{key}}.total"
+                        class="resource-label rollable align-left"
+                        data-roll="d20+@checks.{{key}}.total"
+                        data-label="{{check.label}}"
+                        >{{check.label}}</label
+                    >
+                    {{/if}}
+                    <div class="flexrow flex-group-center">
+                        <input
+                            type="checkbox"
+                            title="Expertise?"
+                            name="data.checks.{{key}}.expertise"
+                            {{checked
+                            check.expertise}}
+                        />
+                        <label
+                            class="resource-label align-left"
+                            for="data.checks.{{key}}.expertise"
+                            >Expertise</label
+                        >
+                    </div>
+                    <input
+                        type="number"
+                        for="data.check.{{key}}.total"
+                        data-dtype="Number"
+                        value="{{check.total}}"
+                        disabled
+                    />
+                </div>
+
+                {{/each}}
+            </div>
+        </div>
+
         {{!-- Abilities Tab --}}
         <div class="tab abilities" data-group="primary" data-tab="abilities">
             <div>
@@ -265,7 +320,10 @@
         {{!-- Data Tab --}}
         <div class="tab data" data-group="primary" data-tab="data">
             {{#each data.attributes as |attribute key|}}
-            <div class="attribute flexrow flex-group-center">
+            <div
+                class="attribute flexrow flex-group-center"
+                style="margin-bottom: 0.25rem"
+            >
                 <label
                     for="data.attributes.{{key}}.total"
                     class="resource-label align-left"
