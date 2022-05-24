@@ -2,4 +2,4 @@
 
 Apotheosis system definition for FoundryVTT
 
-generate with `yo foundry`
+generated with `yo foundry`
