@@ -4,4 +4,4 @@ Apotheosis system definition for FoundryVTT
 
 generated with `yo foundry`
 
-TODO check what license to use for Apotheosis demo data
+The content of this module was recreated with the permission of game creator Ian Tassin from the Apotheosis game system.
