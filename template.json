@@ -96,6 +96,7 @@
         },
         "weapon": {
             "templates": ["base", "genericItem"],
+            "weaponAttackAttribute": "str",
             "formula": "d20 + @attributes.str.total",
             "damage": "d6",
             "proficient": false,

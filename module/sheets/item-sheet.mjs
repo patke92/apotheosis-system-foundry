@@ -41,10 +41,11 @@ export class ApotheosisItemSheet extends ItemSheet {
         const itemData = context.item.data
 
         if (itemData.type === "weapon") {
+            const weaponAttackAttribute = itemData.data.weaponAttackAttribute
             if (itemData.data.proficient === true) {
-                itemData.data.formula = "d20 + @attributes.str.total * 1.5"
+                itemData.data.formula = `d20 + @attributes.${weaponAttackAttribute}.total * 1.5`
             } else {
-                itemData.data.formula = "d20 + @attributes.str.total"
+                itemData.data.formula = `d20 + @attributes.${weaponAttackAttribute}.total`
             }
         }
 

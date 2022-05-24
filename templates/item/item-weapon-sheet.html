@@ -59,6 +59,15 @@ when possible. --}}
         <div class="tab data" data-group="primary" data-tab="data">
             {{!-- As you add new fields, add them in here! --}}
             <div class="resource">
+                <label class="resource-label">Attack bonus attribute</label>
+                <input
+                    type="text"
+                    name="data.weaponAttackAttribute"
+                    value="{{data.weaponAttackAttribute}}"
+                    data-dtype="String"
+                />
+            </div>
+            <div class="resource">
                 <label class="resource-label">Roll Formula</label>
                 <input
                     type="text"
