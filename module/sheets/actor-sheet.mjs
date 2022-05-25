@@ -72,92 +72,15 @@ export class ApotheosisActorSheet extends ActorSheet {
      * @return {undefined}
      */
     _prepareCharacterData(context) {
-        // Handle ability scores.
+        // Handle attribute scores.
         for (let [k, v] of Object.entries(context.data.attributes)) {
             v.label = game.i18n.localize(CONFIG.APOTHEOSIS.attributes[k]) ?? k
-
-            v.total = v.base
-
-            // Get attribute modifiers from race
-            if (context.race !== undefined) {
-                v.total =
-                    v.total + context.race.data.attributeModifiers[k].value
-            }
-
-            // Get attribute modifiers from background
-            if (context.background !== undefined) {
-                v.total =
-                    v.total +
-                    context.background.data.attributeModifiers[k].value
-            }
-
-            for (let ability of context.abilities) {
-                v.total = v.total + ability.data.attributeModifiers[k].value
-            }
-
-            if (v.total !== this.actor.data.data.attributes[k].total) {
-                // Update the actor with the new total
-                const attributeToUpdate = "data.attributes." + k + ".total"
-                this.actor.update({
-                    [attributeToUpdate]: v.total,
-                })
-            }
         }
 
         for (let [checkName, v] of Object.entries(context.data.checks)) {
             v.label =
                 game.i18n.localize(CONFIG.APOTHEOSIS.checks[checkName]) ??
                 checkName
-            v.base = context.data.attributes[v.attribute].total
-            const checkToUpdate = "data.checks." + checkName + ".base"
-            this.actor.update({
-                [checkToUpdate]: v.base,
-            })
-        }
-
-        // todo handle race and background check modifiers
-
-        // Handle EP max
-        context.data.EP.max =
-            context.data.attributes.con.total * 5 +
-            context.data.attributes.str.total * 2 +
-            context.data.attributes.dex.total * 2
-
-        if (context.data.EP.max < 2) {
-            context.data.EP.max = 2
-        }
-
-        for (let ability of context.abilities) {
-            context.data.EP.max = context.data.EP.max + ability.data.EPModifier
-        }
-
-        if (context.data.EP.max !== this.actor.data.data.EP.max) {
-            // Update the actor with the new EP max
-            this.actor.update({
-                "data.EP.max": context.data.EP.max,
-            })
-        }
-
-        // todo Handle Mana max
-
-        context.data.defense.value = Math.ceil(
-            10 + context.data.attributes.dex.total / 2
-        )
-
-        for (let armor of context.gear.armor) {
-            if (armor.data.equipped === true) {
-                context.data.defense.value =
-                    context.data.defense.value + armor.data.defense
-                context.data.defense.damageReduction =
-                    context.data.defense.damageReduction +
-                    armor.data.damageReduction
-            }
-        }
-
-        if (context.data.defense.value !== this.actor.data.data.defense.value) {
-            this.actor.update({
-                "data.defense.value": context.data.defense.value,
-            })
         }
     }
 
@@ -221,13 +144,13 @@ export class ApotheosisActorSheet extends ActorSheet {
         }
 
         // Assign and return
-        context.gear = gear
-        context.items = items
-        context.features = features
-        context.spells = spells
-        context.race = race
-        context.background = background
-        context.abilities = abilities
+        if (context.gear !== gear) context.gear = gear
+        if (context.items !== items) context.items = items
+        if (context.features !== features) context.features = features
+        if (context.spells !== spells) context.spells = spells
+        if (context.race !== race) context.race = race
+        if (context.background !== background) context.background = background
+        if (context.abilities !== abilities) context.abilities = abilities
     }
 
     /* -------------------------------------------- */

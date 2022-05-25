@@ -50,13 +50,32 @@
                 />
             </div>
             {{/each}}
-            <div class="attribute flexrow flex-group-center">
+            <div class="flexrow flex-group-center">
                 <label class="align-left">EPModifier</label>
                 <input
                     name="data.EPModifier"
-                    type="Number"
+                    type="number"
                     value="{{data.EPModifier}}"
                 />
+            </div>
+            <div class="flexrow flex-group-center">
+                <input
+                    name="data.spellcasting"
+                    type="checkbox"
+                    value="{{data.spellcasting}}"
+                />
+                <label class="align-left">Spellcasting</label>
+
+                <div class="resource">
+                    <label class="resource-label align-left"
+                        >Max mana formula</label
+                    >
+                    <input
+                        name="data.maxManaFormula"
+                        type="text"
+                        value="{{data.maxManaFormula}}"
+                    />
+                </div>
             </div>
         </div>
     </section>

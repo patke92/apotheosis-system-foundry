@@ -62,26 +62,24 @@
                                 data-dtype="Number"
                             />
                             <span> / </span>
-                            <input
+                            <!-- <input
                                 type="number"
                                 name="data.EP.max"
                                 value="{{data.EP.max}}"
                                 data-dtype="Number"
                                 disabled
+                            /> -->
+                            <label for="data.EP.max">{{data.EP.max}}</label>
+                            <span> + </span>
+                            <input
+                                type="number"
+                                name="data.EP.temporary"
+                                class="resource temporary-ep"
+                                value="{{data.EP.temporary}}"
+                                data-dtype="Number"
+                                title="Temporary EP"
                             />
                         </div>
-                    </div>
-                    <div class="resource">
-                        <label for="data.EP.temporary" class="resource-label"
-                            >Temp. EP
-                        </label>
-                        <input
-                            type="number"
-                            name="data.EP.temporary"
-                            class="resource temporary-ep"
-                            value="{{data.EP.temporary}}"
-                            data-dtype="Number"
-                        />
                     </div>
                 </div>
 
@@ -158,7 +156,7 @@
             <div class="attributes flexcol">
                 <div
                     class="flexrow flex-group-center"
-                    style="border-bottom: 1px solid grey; margin-bottom: 0.5rem"
+                    style="border-bottom: 1px solid grey"
                 >
                     <label class="resource-label align-left">Attribute</label>
                     <label class="resource-label align-left"
@@ -192,7 +190,7 @@
                                 class="decrease-progress {{key}} fas fa-minus"
                                 title="Decrease progress"
                             ></i>
-                            <input
+                            <!-- <input
                                 type="number"
                                 class="attribute-progress {{key}}"
                                 id="attribute-progress-{{key}}"
@@ -200,7 +198,10 @@
                                 name="data.attributes.{{key}}.progress"
                                 title="Progress"
                                 value="{{attribute.progress}}"
-                            />
+                            /> -->
+                            <label for="data.attributes.{{key}}.progress"
+                                >{{attribute.progress}}</label
+                            >
                             <i
                                 class="increase-progress {{key}} fas fa-plus"
                                 title="Increase progress"
@@ -210,13 +211,16 @@
                     {{else}}
                     <div></div>
                     {{/if}}
-                    <input
+                    <!-- <input
                         type="text"
                         name="data.attributes.{{key}}.total"
                         value="{{attribute.total}}"
                         data-dtype="Number"
                         disabled
-                    />
+                    /> -->
+                    <label for="data.attributes.{{key}}.total"
+                        >{{attribute.total}}</label
+                    >
                 </div>
                 {{/each}}
             </div>
@@ -224,25 +228,25 @@
 
         {{!-- Checks Tab --}}
         <div class="tab checks" data-group="primary" data-tab="checks">
-            <div class="checks flexcol">
-                <div
-                    class="flexrow flex-group-center"
-                    style="border-bottom: 1px solid grey; margin-bottom: 0.5rem"
-                >
-                    <label class="resource-label align-left">Check</label>
-                    <label class="resource-label align-left">Expertise</label>
-                    <label class="resource-label align-left">Value</label>
-                </div>
+            <div
+                class="grid grid-6col"
+                style="border-bottom: 1px solid grey; margin-bottom: 0.25rem"
+            >
+                <label class="resource-label align-left">Check</label>
+                <label class="resource-label align-left">Expertise</label>
+                <label class="resource-label align-left">Value</label>
+                <label class="resource-label align-left">Check</label>
+                <label class="resource-label align-left">Expertise</label>
+                <label class="resource-label align-left">Value</label>
+            </div>
+            <div class="checks grid grid-2col">
                 {{#each data.checks as |check key|}}
-                <div
-                    class="check flexrow flex-group-center"
-                    style="margin-bottom: 0.25rem"
-                >
+                <div class="check flexrow flex-group-center">
                     {{#if check.expertise}}
                     <label
                         for="data.check.{{key}}.total"
                         class="resource-label rollable align-left"
-                        data-roll="d20+(@checks.{{key}}.value * 1.5)"
+                        data-roll="d20+(@checks.{{key}}.total * 1.5)"
                         data-label="{{check.label}}"
                         >{{check.label}}</label
                     >
@@ -269,13 +273,15 @@
                             >Expertise</label
                         >
                     </div>
-                    <input
+                    <label for="data.check.{{key}}.total"
+                        >{{check.total}}</label
+                    >
+                    <!-- <input
                         type="number"
                         for="data.check.{{key}}.total"
                         data-dtype="Number"
                         value="{{check.total}}"
-                        disabled
-                    />
+                    /> -->
                 </div>
 
                 {{/each}}

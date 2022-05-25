@@ -22,9 +22,7 @@
                 "wounds": {
                     "value": 0
                 },
-                "movementSpeed": 0,
-                "encumbranceWeight": 0,
-                "biography": ""
+                "movementSpeed": 0
             }
         },
         "character": {
@@ -211,6 +209,8 @@
                     "total": 0
                 }
             },
+            "encumbranceWeight": 0,
+            "biography": "",
             "spellcasting": false,
             "maxManaFormula": "",
             "alignment": "",
@@ -315,7 +315,7 @@
             },
             "EPModifier": 0,
             "spellcasting": false,
-            "maxManaFormula": ""
+            "maxManaFormula": "@attributes.int.total"
         }
     }
 }

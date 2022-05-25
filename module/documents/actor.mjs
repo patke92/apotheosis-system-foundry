@@ -47,7 +47,63 @@ export class ApotheosisActor extends Actor {
         // Make modifications to data here. For example:
         const data = actorData.data
 
-        // todo check if character has caster and set mana.max
+        // Attributes
+        for (let [k, v] of Object.entries(data.attributes)) {
+            v.total = v.base
+        }
+
+        // todo make sure there can only be one race
+        const race = actorData.items.find((item) => {
+            return item.data.type === "race"
+        })
+        if (race) {
+            for (let [k, v] of Object.entries(
+                race.data.data.attributeModifiers
+            )) {
+                data.attributes[k].total += v.value
+            }
+        }
+
+        // todo make sure there can only be one background
+        const background = actorData.items.find((item) => {
+            return item.data.type === "background"
+        })
+        if (background) {
+            for (let [modifier, v] of Object.entries(
+                background.data.data.attributeModifiers
+            )) {
+                data.attributes[modifier].total += v.value
+            }
+        }
+
+        data.defense.value = Math.ceil(10 + data.attributes.dex.total / 2)
+
+        // Attributes and other modifiers from items
+        for (let item of actorData.items) {
+            // Armor
+            if (item.data.type === "armor") {
+                console.log(item)
+                if (item.data.data.equipped === true)
+                    data.defense.value += item.data.data.defense
+                data.defense.damageReduction += item.data.data.damageReduction
+            }
+        }
+
+        // Checks
+        for (let [checkName, v] of Object.entries(data.checks)) {
+            v.base = data.attributes[v.attribute].total
+            v.total = v.base
+        }
+
+        // EP
+        data.EP.max =
+            data.attributes.con.total * 5 +
+            data.attributes.str.total * 2 +
+            data.attributes.dex.total * 2
+
+        if (data.EP.max < 2) {
+            data.EP.max = 2
+        }
     }
 
     /**
