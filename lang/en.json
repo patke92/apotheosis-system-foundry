@@ -18,5 +18,28 @@
     "APOTHEOSIS.EffectEdit": "Edit Effect",
     "APOTHEOSIS.EffectDelete": "Delete Effect",
 
+    "APOTHEOSIS.checkAthletics": "Athletics",
+    "APOTHEOSIS.checkGrappling": "Grappling",
+    "APOTHEOSIS.checkAcrobatics": "Acrobatics",
+    "APOTHEOSIS.checkReflex": "Reflex",
+    "APOTHEOSIS.checkStealth": "Stealth",
+    "APOTHEOSIS.checkAwareness": "Awareness",
+    "APOTHEOSIS.checkEndurance": "Endurance",
+    "APOTHEOSIS.checkSurvival": "Survival",
+    "APOTHEOSIS.checkArcaneKnowledge": "Arcane Knowledge",
+    "APOTHEOSIS.checkComprehension": "Comprehension",
+    "APOTHEOSIS.checkHistory": "History",
+    "APOTHEOSIS.checkInvestigation": "Investigation",
+    "APOTHEOSIS.checkMedicine": "Medicine",
+    "APOTHEOSIS.checkNature": "Nature",
+    "APOTHEOSIS.checkReligion": "Religion",
+    "APOTHEOSIS.checkAnimalHandling": "Animal Handling",
+    "APOTHEOSIS.checkDeception": "Deception",
+    "APOTHEOSIS.checkDistraction": "Disctraction",
+    "APOTHEOSIS.checkInsight": "Insight",
+    "APOTHEOSIS.checkIntimidation": "Intimidation",
+    "APOTHEOSIS.checkPersuasion": "Persuasion",
+    "APOTHEOSIS.checkSleightOfHand": "Sleight of Hand",
+
     "APOTHEOSIS.Add": "Add"
 }
