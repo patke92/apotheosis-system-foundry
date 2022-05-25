@@ -156,7 +156,10 @@
             <div class="attributes flexcol">
                 <div
                     class="flexrow flex-group-center"
-                    style="border-bottom: 1px solid grey"
+                    style="
+                        border-bottom: 1px solid grey;
+                        margin-bottom: 0.25rem;
+                    "
                 >
                     <label class="resource-label align-left">Attribute</label>
                     <label class="resource-label align-left"
@@ -211,16 +214,13 @@
                     {{else}}
                     <div></div>
                     {{/if}}
-                    <!-- <input
+                    <input
                         type="text"
                         name="data.attributes.{{key}}.total"
                         value="{{attribute.total}}"
                         data-dtype="Number"
                         disabled
-                    /> -->
-                    <label for="data.attributes.{{key}}.total"
-                        >{{attribute.total}}</label
-                    >
+                    />
                 </div>
                 {{/each}}
             </div>
@@ -230,7 +230,7 @@
         <div class="tab checks" data-group="primary" data-tab="checks">
             <div
                 class="grid grid-6col"
-                style="border-bottom: 1px solid grey; margin-bottom: 0.25rem"
+                style="border-bottom: 1px solid grey; margin-top: 0"
             >
                 <label class="resource-label align-left">Check</label>
                 <label class="resource-label align-left">Expertise</label>
@@ -248,7 +248,7 @@
                         class="resource-label rollable align-left"
                         data-roll="d20+(@checks.{{key}}.total * 1.5)"
                         data-label="{{check.label}}"
-                        >{{check.label}}</label
+                        >{{check.label}} ({{check.attribute}})</label
                     >
                     {{else}}
                     <label
@@ -256,7 +256,7 @@
                         class="resource-label rollable align-left"
                         data-roll="d20+@checks.{{key}}.total"
                         data-label="{{check.label}}"
-                        >{{check.label}}</label
+                        >{{check.label}} ({{check.attribute}})</label
                     >
                     {{/if}}
                     <div class="flexrow flex-group-center">
@@ -273,15 +273,13 @@
                             >Expertise</label
                         >
                     </div>
-                    <label for="data.check.{{key}}.total"
-                        >{{check.total}}</label
-                    >
-                    <!-- <input
+                    <input
                         type="number"
                         for="data.check.{{key}}.total"
                         data-dtype="Number"
                         value="{{check.total}}"
-                    /> -->
+                        disabled
+                    />
                 </div>
 
                 {{/each}}
