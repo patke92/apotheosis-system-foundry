@@ -15,6 +15,12 @@
             "label": "Apotheosis Demo Races",
             "path": "packs/races.db",
             "type": "Item"
+        },
+        {
+            "name": "Backgrounds",
+            "label": "Apotheosis Demo Backgrounds",
+            "path": "packs/backgrounds.db",
+            "type": "Item"
         }
     ],
     "languages": [
