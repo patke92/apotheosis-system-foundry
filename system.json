@@ -7,7 +7,7 @@
     "compatibleCoreVersion": "9",
     "author": "patke",
     "esmodules": ["module/apotheosis.mjs"],
-    "styles": ["css/apotheosis.css"],
+    "styles": ["css/generated-css.css"],
     "scripts": [],
     "packs": [
         {
