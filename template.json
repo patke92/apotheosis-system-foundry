@@ -31,7 +31,7 @@
                 "str": {
                     "total": 0,
                     "base": 0,
-                    "saveBonus": 0,
+                    "saveModifier": 0,
                     "progress": 0,
                     "training": false,
                     "trainingPossible": true
@@ -39,7 +39,7 @@
                 "dex": {
                     "total": 0,
                     "base": 0,
-                    "saveBonus": 0,
+                    "saveModifier": 0,
                     "progress": 0,
                     "training": false,
                     "trainingPossible": true
@@ -47,7 +47,7 @@
                 "con": {
                     "total": 0,
                     "base": 0,
-                    "saveBonus": 0,
+                    "saveModifier": 0,
                     "progress": 0,
                     "training": false,
                     "trainingPossible": true
@@ -55,7 +55,7 @@
                 "int": {
                     "total": 0,
                     "base": 0,
-                    "saveBonus": 0,
+                    "saveModifier": 0,
                     "progress": 0,
                     "training": false,
                     "trainingPossible": true
@@ -63,7 +63,7 @@
                 "cha": {
                     "total": 0,
                     "base": 0,
-                    "saveBonus": 0,
+                    "saveModifier": 0,
                     "progress": 0,
                     "training": false,
                     "trainingPossible": true
@@ -71,7 +71,7 @@
                 "luck": {
                     "total": 0,
                     "base": 0,
-                    "saveBonus": 0,
+                    "saveModifier": 0,
                     "trainingPossible": false
                 }
             },
@@ -212,7 +212,7 @@
             "encumbranceWeight": 0,
             "biography": "",
             "spellcasting": false,
-            "maxManaFormula": "",
+            "maxManaAttribute": "",
             "alignment": "",
             "money": {
                 "platinum": 0,
@@ -278,12 +278,36 @@
         "race": {
             "templates": ["base"],
             "attributeModifiers": {
-                "str": { "value": 0 },
-                "dex": { "value": 0 },
-                "con": { "value": 0 },
-                "int": { "value": 0 },
-                "cha": { "value": 0 },
-                "luck": { "value": 0 }
+                "str": { "value": 0, "saveModifier": 0 },
+                "dex": { "value": 0, "saveModifier": 0 },
+                "con": { "value": 0, "saveModifier": 0 },
+                "int": { "value": 0, "saveModifier": 0 },
+                "cha": { "value": 0, "saveModifier": 0 },
+                "luck": { "value": 0, "saveModifier": 0 }
+            },
+            "checkModifiers": {
+                "athletics": { "attribute": "str", "value": 0 },
+                "grappling": { "attribute": "str", "value": 0 },
+                "acrobatics": { "attribute": "dex", "value": 0 },
+                "reflex": { "attribute": "dex", "value": 0 },
+                "stealth": { "attribute": "dex", "value": 0 },
+                "awareness": { "attribute": "con", "value": 0 },
+                "endurance": { "attribute": "con", "value": 0 },
+                "survival": { "attribute": "con", "value": 0 },
+                "arcaneKnowledge": { "attribute": "int", "value": 0 },
+                "comprehension": { "attribute": "int", "value": 0 },
+                "history": { "attribute": "int", "value": 0 },
+                "investigation": { "attribute": "int", "value": 0 },
+                "medicine": { "attribute": "int", "value": 0 },
+                "nature": { "attribute": "int", "value": 0 },
+                "religion": { "attribute": "int", "value": 0 },
+                "animalHandling": { "attribute": "cha", "value": 0 },
+                "deception": { "attribute": "cha", "value": 0 },
+                "distraction": { "attribute": "cha", "value": 0 },
+                "insight": { "attribute": "cha", "value": 0 },
+                "intimidation": { "attribute": "cha", "value": 0 },
+                "persuasion": { "attribute": "cha", "value": 0 },
+                "sleightOfHand": { "attribute": "cha", "value": 0 }
             },
             "movementSpeed": 0,
             "size": "medium"
@@ -311,11 +335,13 @@
                 "con": { "value": 0 },
                 "int": { "value": 0 },
                 "cha": { "value": 0 },
-                "luck": { "value": 0 }
+                "luck": { "value": 0, "canBreakLimit": false }
             },
             "EPModifier": 0,
             "spellcasting": false,
-            "maxManaFormula": "@attributes.int.total"
+            "maxManaAttribute": "int",
+            "expenditureLimitBonus": 0,
+            "encumbranceWeightBonus": 0
         }
     }
 }

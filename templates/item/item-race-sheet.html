@@ -34,18 +34,59 @@
 
         {{!-- Data Tab --}}
         <div class="tab data" data-group="primary" data-tab="data">
-            {{#each data.attributeModifiers as |attribute key|}}
-            <div class="attribute flexrow flex-group-center">
+            <div style="margin-bottom: 0.25rem; border-bottom: 1px solid gray">
+                <label class="resource-label">Attributes</label>
+            </div>
+            <div class="flexcol">
+                {{#each data.attributeModifiers as |attribute key|}}
+                <div class="attribute flexrow flex-group-center">
+                    <div>
+                        <label
+                            for="data.attributeModifiers.{{key}}.value"
+                            class="resource-label align-left"
+                            data-label="{{attribute}}"
+                            >{{attribute.label}}</label
+                        >
+                        <input
+                            type="text"
+                            name="data.attributeModifiers.{{key}}.value"
+                            value="{{attribute.value}}"
+                            data-dtype="Number"
+                        />
+                    </div>
+                    <div class="resource">
+                        <label
+                            for="data.attributeModifiers.{{key}}.saveModifier"
+                            class="resource-label"
+                            >Save Modifier</label
+                        >
+                        <input
+                            type="text"
+                            name="data.attributeModifiers.{{key}}.saveModifier"
+                            value="{{attribute.saveModifier}}"
+                        />
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            <div style="margin-bottom: 0.25rem; border-bottom: 1px solid gray">
+                <label class="resource-label">Checks</label>
+            </div>
+            {{#each data.checkModifiers as |check key|}}
+            <div
+                class="check flexrow flex-group-center"
+                style="margin-bottom: 0.25rem"
+            >
                 <label
-                    for="data.attributeModifiers.{{key}}.value"
+                    for="data.checkModifiers.{{key}}.value"
                     class="resource-label align-left"
-                    data-label="{{attribute}}"
-                    >{{attribute.label}}</label
+                    data-label="{{check}}"
+                    >{{check.label}} ({{check.attribute}})</label
                 >
                 <input
                     type="text"
-                    name="data.attributeModifiers.{{key}}.value"
-                    value="{{attribute.value}}"
+                    name="data.checkModifiers.{{key}}.value"
+                    value="{{check.value}}"
                     data-dtype="Number"
                 />
             </div>

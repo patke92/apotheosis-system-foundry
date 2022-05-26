@@ -2,12 +2,12 @@
     "name": "apotheosis",
     "title": "Apotheosis",
     "description": "The Apotheosis system for FoundryVTT!",
-    "version": "0.5.2",
+    "version": "0.10.0",
     "minimumCoreVersion": "0.8.6",
     "compatibleCoreVersion": "9",
     "author": "patke",
     "esmodules": ["module/apotheosis.mjs"],
-    "styles": ["css/generated-css.css"],
+    "styles": ["css/generated-css.css", "css/styles.css"],
     "scripts": [],
     "packs": [
         {

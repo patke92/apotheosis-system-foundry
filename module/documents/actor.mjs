@@ -61,6 +61,7 @@ export class ApotheosisActor extends Actor {
                 race.data.data.attributeModifiers
             )) {
                 data.attributes[k].total += v.value
+                data.attributes[k].saveModifier = +v.saveModifier
             }
         }
 
@@ -76,7 +77,39 @@ export class ApotheosisActor extends Actor {
             }
         }
 
+        // Checks
+        for (let [checkName, v] of Object.entries(data.checks)) {
+            v.base = data.attributes[v.attribute].total
+            v.total = v.base
+        }
+        if (race) {
+            console.log(race.data.data.checkModifiers)
+            for (let [k, v] of Object.entries(race.data.data.checkModifiers)) {
+                console.log(k)
+                console.log(v)
+                data.checks[k].total += v.value
+            }
+        }
+
         data.defense.value = Math.ceil(10 + data.attributes.dex.total / 2)
+
+        // EP
+        data.EP.max =
+            data.attributes.con.total * 5 +
+            data.attributes.str.total * 2 +
+            data.attributes.dex.total * 2
+
+        if (data.EP.max < 2) {
+            data.EP.max = 2
+        }
+
+        // Mana
+        if (data.maxManaAttribute === "int") {
+            data.mana.max = data.attributes[data.maxManaAttribute].total
+        }
+        if (data.maxManaAttribute === "con") {
+            data.mana.max = data.attributes[data.maxManaAttribute].total / 2
+        }
 
         // Attributes and other modifiers from items
         for (let item of actorData.items) {
@@ -88,22 +121,16 @@ export class ApotheosisActor extends Actor {
                         item.data.data.damageReduction
                 }
             }
-        }
-
-        // Checks
-        for (let [checkName, v] of Object.entries(data.checks)) {
-            v.base = data.attributes[v.attribute].total
-            v.total = v.base
-        }
-
-        // EP
-        data.EP.max =
-            data.attributes.con.total * 5 +
-            data.attributes.str.total * 2 +
-            data.attributes.dex.total * 2
-
-        if (data.EP.max < 2) {
-            data.EP.max = 2
+            if (item.data.type === "ability") {
+                if (item.data.data.spellcasting === true) {
+                    console.log(`set spellcasting to true`)
+                    data.spellcasting = true
+                    data.maxManaAttribute = item.data.data.maxManaAttribute
+                }
+                data.mana.expenditureLimit +=
+                    item.data.data.expenditureLimitBonus
+                data.EP.max += item.data.data.EPModifier
+            }
         }
     }
 

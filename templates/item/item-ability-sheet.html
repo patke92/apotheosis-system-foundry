@@ -62,18 +62,30 @@
                 <input
                     name="data.spellcasting"
                     type="checkbox"
-                    value="{{data.spellcasting}}"
+                    {{
+                    checked
+                    data.spellcasting}}
                 />
-                <label class="align-left">Spellcasting</label>
+                <label class="resource-label align-left">Spellcasting</label>
 
                 <div class="resource">
                     <label class="resource-label align-left"
-                        >Max mana formula</label
+                        >Max mana attribute</label
                     >
                     <input
-                        name="data.maxManaFormula"
+                        name="data.maxManaAttribute"
                         type="text"
-                        value="{{data.maxManaFormula}}"
+                        value="{{data.maxManaAttribute}}"
+                    />
+                </div>
+                <div class="resource">
+                    <label class="resource-label align-left"
+                        >Mana expenditure limit</label
+                    >
+                    <input
+                        name="data.expenditureLimitBonus"
+                        type="number"
+                        value="{{data.expenditureLimitBonus}}"
                     />
                 </div>
             </div>

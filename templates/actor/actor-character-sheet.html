@@ -121,7 +121,7 @@
                 <div>
                     <label
                         class="rollable resource-label"
-                        data-roll="d20+@attributes.con.total+@attributes.con.saveBonus"
+                        data-roll="d20+@attributes.con.total+@attributes.con.saveModifier"
                         >Wounds</label
                     >
                     <input
@@ -190,7 +190,7 @@
                         </button> -->
                         <button
                             class="rollable"
-                            data-roll="d20+@attributes.{{key}}.total+@attributes.{{key}}.saveBonus"
+                            data-roll="d20+@attributes.{{key}}.total+@attributes.{{key}}.saveModifier"
                             data-label="{{attribute.label}} Save"
                             type="button"
                         >

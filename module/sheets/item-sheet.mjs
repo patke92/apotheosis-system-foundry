@@ -76,6 +76,12 @@ export class ApotheosisItemSheet extends ItemSheet {
             }
         }
 
+        if (context.data.checkModifiers) {
+            for (let [k, v] of Object.entries(context.data.checkModifiers)) {
+                v.label = game.i18n.localize(CONFIG.APOTHEOSIS.checks[k]) ?? k
+            }
+        }
+
         return context
     }
 
