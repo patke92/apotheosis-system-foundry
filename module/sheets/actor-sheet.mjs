@@ -61,6 +61,8 @@ export class ApotheosisActorSheet extends ActorSheet {
         // Add roll data for TinyMCE editors.
         context.rollData = context.actor.getRollData()
 
+        context.effects = prepareActiveEffectCategories(this.actor.effects)
+
         return context
     }
 

@@ -145,6 +145,7 @@
         <a class="item" data-tab="items">Items</a>
         <a class="item" data-tab="spells">Spells</a>
         <a class="item" data-tab="biography">Biography</a>
+        <a class="item" data-tab="effects">Effects</a>
         <a class="item" data-tab="data">Data</a>
     </nav>
 
@@ -171,13 +172,32 @@
                     class="attribute flexrow flex-group-center"
                     style="margin-bottom: 0.25rem"
                 >
-                    <label
-                        for="data.attributes.{{key}}.total"
-                        class="resource-label rollable align-left"
-                        data-roll="d20+@attributes.{{key}}.total"
-                        data-label="{{attribute.label}}"
-                        >{{attribute.label}}</label
-                    >
+                    <div class="flexrow flex-group-center">
+                        <label
+                            for="data.attributes.{{key}}.total"
+                            class="resource-label rollable align-left"
+                            data-roll="d20+@attributes.{{key}}.total"
+                            data-label="{{attribute.label}}"
+                            >{{attribute.label}}</label
+                        >
+                        <!-- <button
+                            class="rollable"
+                            data-roll="d20+@attributes.{{key}}.total"
+                            data-label="{{attribute.label}}"
+                            type="button"
+                        >
+                            Roll
+                        </button> -->
+                        <button
+                            class="rollable"
+                            data-roll="d20+@attributes.{{key}}.total+@attributes.{{key}}.saveBonus"
+                            data-label="{{attribute.label}} Save"
+                            type="button"
+                        >
+                            Save
+                        </button>
+                    </div>
+
                     {{#if attribute.trainingPossible}}
                     <div class="flexrow flex-group-center">
                         <input
@@ -315,6 +335,10 @@
         {{!-- Owned Spells Tab --}}
         <div class="tab spells" data-group="primary" data-tab="spells">
             {{> "systems/apotheosis/templates/actor/parts/actor-spells.html"}}
+        </div>
+
+        <div class="tab effects" data-group="primary" data-tab="effects">
+            {{> "systems/apotheosis/templates/actor/parts/actor-effects.html"}}
         </div>
 
         {{!-- Data Tab --}}
