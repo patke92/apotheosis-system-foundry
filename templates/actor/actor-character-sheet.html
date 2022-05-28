@@ -1,15 +1,43 @@
 <form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <img
-            class="profile-img"
-            src="{{actor.img}}"
-            data-edit="img"
-            title="{{actor.name}}"
-            height="100"
-            width="100"
-        />
-        <div class="header-fields">
+        <div class="flexcol">
+            <img
+                class="profile-img"
+                src="{{actor.img}}"
+                data-edit="img"
+                title="{{actor.name}}"
+                height="100"
+                width="100"
+            />
+            <div class="flexcol">
+                <label
+                    class="resource-label"
+                    for="data.exhaustion"
+                    style="width: 100px"
+                    >Exhaustion</label
+                >
+                <input
+                    type="number"
+                    name="data.exhaustion"
+                    value="{{data.exhaustion}}"
+                    style="width: 100px"
+                />
+                <label
+                    class="resource-label"
+                    for="data.hungerThirst"
+                    style="width: 100px"
+                    >Hunger / Thirst</label
+                >
+                <input
+                    type="number"
+                    name="data.hungerThirst"
+                    value="{{data.hungerThirst}}"
+                    style="width: 100px"
+                />
+            </div>
+        </div>
+        <div class="header-fields" style="flex-basis: 70%">
             <h1 class="charname">
                 <input
                     name="name"
@@ -19,6 +47,14 @@
                 />
             </h1>
             <div class="grid grid-3col">
+                <div>
+                    <input
+                        name="data.alignment"
+                        type="text"
+                        value="{{data.alignment}}"
+                        placeholder="Alignment"
+                    />
+                </div>
                 <div>
                     <input
                         name="race"
@@ -35,14 +71,6 @@
                         value="{{background.name}}"
                         placeholder="Background"
                         disabled
-                    />
-                </div>
-                <div>
-                    <input
-                        name="data.alignment"
-                        type="text"
-                        value="{{data.alignment}}"
-                        placeholder="Alignment"
                     />
                 </div>
             </div>
@@ -402,3 +430,8 @@
         </div>
     </section>
 </form>
+<div class="character-sheet-encumbrance">
+    <label for="data.currentEncumbrance">{{data.currentEncumbrance}}</label>
+    <span> / </span>
+    <label for="data.encumbranceLimit">{{data.encumbranceLimit}}</label>
+</div>

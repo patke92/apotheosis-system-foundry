@@ -56,6 +56,7 @@ export class ApotheosisActor extends Actor {
         const race = actorData.items.find((item) => {
             return item.data.type === "race"
         })
+        // Get race attribute modifiers
         if (race) {
             for (let [k, v] of Object.entries(
                 race.data.data.attributeModifiers
@@ -69,6 +70,7 @@ export class ApotheosisActor extends Actor {
         const background = actorData.items.find((item) => {
             return item.data.type === "background"
         })
+        // Get background attribute modifiers
         if (background) {
             for (let [modifier, v] of Object.entries(
                 background.data.data.attributeModifiers
@@ -82,11 +84,9 @@ export class ApotheosisActor extends Actor {
             v.base = data.attributes[v.attribute].total
             v.total = v.base
         }
+        // Get race check modifiers
         if (race) {
-            console.log(race.data.data.checkModifiers)
             for (let [k, v] of Object.entries(race.data.data.checkModifiers)) {
-                console.log(k)
-                console.log(v)
                 data.checks[k].total += v.value
             }
         }
@@ -101,14 +101,6 @@ export class ApotheosisActor extends Actor {
 
         if (data.EP.max < 2) {
             data.EP.max = 2
-        }
-
-        // Mana
-        if (data.maxManaAttribute === "int") {
-            data.mana.max = data.attributes[data.maxManaAttribute].total
-        }
-        if (data.maxManaAttribute === "con") {
-            data.mana.max = data.attributes[data.maxManaAttribute].total / 2
         }
 
         // Attributes and other modifiers from items
@@ -132,6 +124,18 @@ export class ApotheosisActor extends Actor {
                 data.EP.max += item.data.data.EPModifier
             }
         }
+
+        // Mana
+        if (data.maxManaAttribute === "int") {
+            data.mana.max = data.attributes[data.maxManaAttribute].total
+        }
+        if (data.maxManaAttribute === "con") {
+            data.mana.max = data.attributes[data.maxManaAttribute].total / 2
+        }
+
+        // todo take care of exhaustion modifiers
+
+        // todo take care of hunger/thirst modifiers
     }
 
     /**

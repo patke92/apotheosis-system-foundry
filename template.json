@@ -209,7 +209,10 @@
                     "total": 0
                 }
             },
-            "encumbranceWeight": 0,
+            "currentEncumbrance": 0,
+            "encumbranceLimit": 0,
+            "hungerThirst": 0,
+            "exhaustion": 0,
             "biography": "",
             "spellcasting": false,
             "maxManaAttribute": "",
@@ -341,7 +344,7 @@
             "spellcasting": false,
             "maxManaAttribute": "int",
             "expenditureLimitBonus": 0,
-            "encumbranceWeightBonus": 0
+            "encumbranceLimitBonus": 0
         }
     }
 }
