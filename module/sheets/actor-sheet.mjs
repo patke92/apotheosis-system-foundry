@@ -47,10 +47,21 @@ export class ApotheosisActorSheet extends ActorSheet {
         context.data = actorData.data
         context.flags = actorData.flags
 
+        // Handle attribute scores.
+        for (let [k, v] of Object.entries(context.data.attributes)) {
+            v.label = game.i18n.localize(CONFIG.APOTHEOSIS.attributes[k]) ?? k
+        }
+
+        for (let [checkName, v] of Object.entries(context.data.checks)) {
+            v.label =
+                game.i18n.localize(CONFIG.APOTHEOSIS.checks[checkName]) ??
+                checkName
+        }
+
         // Prepare character data and items.
         if (actorData.type == "character") {
             this._prepareItems(context)
-            this._prepareCharacterData(context)
+            // this._prepareCharacterData(context)
         }
 
         // Prepare NPC data and items.
