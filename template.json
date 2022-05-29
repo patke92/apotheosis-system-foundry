@@ -6,7 +6,7 @@
                 "EP": {
                     "value": 0,
                     "min": 0,
-                    "max": 0,
+                    "max": 2,
                     "temporary": 0
                 },
                 "mana": {
@@ -16,7 +16,10 @@
                     "expenditureLimit": 0
                 },
                 "defense": {
-                    "value": 0,
+                    "value": {
+                        "base:": 0,
+                        "total": 0
+                    },
                     "damageReduction": 0
                 },
                 "wounds": {
@@ -25,49 +28,49 @@
                 "movementSpeed": 0,
                 "attributes": {
                     "str": {
-                        "total": 0,
                         "base": 0,
-                        "saveModifier": 0,
+                        "mod": 0,
+                        "saveMod": 0,
                         "progress": 0,
                         "training": false,
                         "trainingPossible": true
                     },
                     "dex": {
-                        "total": 0,
                         "base": 0,
-                        "saveModifier": 0,
+                        "mod": 0,
+                        "saveMod": 0,
                         "progress": 0,
                         "training": false,
                         "trainingPossible": true
                     },
                     "con": {
-                        "total": 0,
                         "base": 0,
-                        "saveModifier": 0,
+                        "mod": 0,
+                        "saveMod": 0,
                         "progress": 0,
                         "training": false,
                         "trainingPossible": true
                     },
                     "int": {
-                        "total": 0,
                         "base": 0,
-                        "saveModifier": 0,
+                        "mod": 0,
+                        "saveMod": 0,
                         "progress": 0,
                         "training": false,
                         "trainingPossible": true
                     },
                     "cha": {
-                        "total": 0,
                         "base": 0,
-                        "saveModifier": 0,
+                        "mod": 0,
+                        "saveMod": 0,
                         "progress": 0,
                         "training": false,
                         "trainingPossible": true
                     },
                     "luck": {
-                        "total": 0,
                         "base": 0,
-                        "saveModifier": 0,
+                        "mod": 0,
+                        "saveMod": 0,
                         "trainingPossible": false
                     }
                 },
@@ -76,146 +79,148 @@
                         "attribute": "str",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "grappling": {
                         "attribute": "str",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "acrobatics": {
                         "attribute": "dex",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "reflex": {
                         "attribute": "dex",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "stealth": {
                         "attribute": "dex",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "awareness": {
                         "attribute": "con",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "endurance": {
                         "attribute": "con",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "survival": {
                         "attribute": "con",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "arcaneKnowledge": {
                         "attribute": "int",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "comprehension": {
                         "attribute": "int",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "history": {
                         "attribute": "int",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "investigation": {
                         "attribute": "int",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "medicine": {
                         "attribute": "int",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "nature": {
                         "attribute": "int",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "religion": {
                         "attribute": "int",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "animalHandling": {
                         "attribute": "cha",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "deception": {
                         "attribute": "cha",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "distraction": {
                         "attribute": "cha",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "insight": {
                         "attribute": "cha",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "intimidation": {
                         "attribute": "cha",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "persuasion": {
                         "attribute": "cha",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "sleightOfHand": {
                         "attribute": "cha",
                         "expertise": false,
                         "base": 0,
-                        "total": 0
+                        "mod": 0
                     }
                 },
                 "biography": "",
+                "languages": "",
                 "spellcasting": false,
                 "maxManaAttribute": "",
                 "alignment": "",
-                "attackBonus": 0
+                "attackMod": 0
             }
         },
         "character": {
             "templates": ["base"],
             "currentEncumbrance": 0,
             "encumbranceLimit": 0,
+            "encumbranceSpeedDecreaseThreshold": 5,
             "hungerThirst": 0,
             "exhaustion": 0,
             "money": {
@@ -265,11 +270,11 @@
         "weapon": {
             "templates": ["base", "genericItem"],
             "weaponAttackAttribute": "str",
-            "formula": "d20 + @attributes.str.total",
+            "formula": "d20 + @attributes.str.base + @attributes.str.mod  + @attackMod",
             "customAttackFormula": false,
             "weaponDamageAttribute": "str",
             "damageDie": "d4",
-            "damageFormula": "d6 + (@attributes.str.total / 2)",
+            "damageFormula": "d6 + ((@attributes.str.base + @attrbutes.str.mod) / 2)",
             "customDamageFormula": false,
             "expertise": false,
             "equipped": false
@@ -285,12 +290,12 @@
         "race": {
             "templates": ["base"],
             "attributeModifiers": {
-                "str": { "value": 0, "saveModifier": 0 },
-                "dex": { "value": 0, "saveModifier": 0 },
-                "con": { "value": 0, "saveModifier": 0 },
-                "int": { "value": 0, "saveModifier": 0 },
-                "cha": { "value": 0, "saveModifier": 0 },
-                "luck": { "value": 0, "saveModifier": 0 }
+                "str": { "value": 0, "saveMod": 0 },
+                "dex": { "value": 0, "saveMod": 0 },
+                "con": { "value": 0, "saveMod": 0 },
+                "int": { "value": 0, "saveMod": 0 },
+                "cha": { "value": 0, "saveMod": 0 },
+                "luck": { "value": 0, "saveMod": 0 }
             },
             "checkModifiers": {
                 "athletics": { "attribute": "str", "value": 0 },
@@ -316,7 +321,8 @@
                 "persuasion": { "attribute": "cha", "value": 0 },
                 "sleightOfHand": { "attribute": "cha", "value": 0 }
             },
-            "movementSpeed": 0,
+            "movementSpeed": 30,
+            "encumbranceSpeedDecreaseThreshold": 5,
             "size": "medium"
         },
         "background": {
@@ -348,7 +354,7 @@
             "spellcasting": false,
             "maxManaAttribute": "int",
             "expenditureLimitBonus": 0,
-            "encumbranceLimitBonus": 0
+            "encumbranceSpeedDecreaseThreshold": 5
         }
     }
 }

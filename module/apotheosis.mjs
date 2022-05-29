@@ -29,7 +29,7 @@ Hooks.once("init", async function () {
      * @type {String}
      */
     CONFIG.Combat.initiative = {
-        formula: "1d20 + @attributes.dex.total",
+        formula: "1d20 + @attributes.dex.base + @attributes.dex.mod",
         decimals: 2,
     }
 
@@ -68,6 +68,10 @@ Handlebars.registerHelper("concat", function () {
 
 Handlebars.registerHelper("toLowerCase", function (str) {
     return str.toLowerCase()
+})
+
+Handlebars.registerHelper("add", function (value1, value2) {
+    return value1 + value2
 })
 
 /* -------------------------------------------- */

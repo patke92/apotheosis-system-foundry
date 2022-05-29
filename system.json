@@ -1,8 +1,8 @@
 {
     "name": "apotheosis",
     "title": "Apotheosis",
-    "description": "The Apotheosis system for FoundryVTT!",
-    "version": "0.14.0",
+    "description": "A very basic implementation of Apotheosis for FoundryVTT",
+    "version": "0.28.0",
     "minimumCoreVersion": "0.8.6",
     "compatibleCoreVersion": "9",
     "author": "patke",

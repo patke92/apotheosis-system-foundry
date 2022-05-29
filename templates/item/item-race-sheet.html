@@ -56,14 +56,14 @@
                     </div>
                     <div class="resource">
                         <label
-                            for="data.attributeModifiers.{{key}}.saveModifier"
+                            for="data.attributeModifiers.{{key}}.saveMod"
                             class="resource-label"
                             >Save Modifier</label
                         >
                         <input
-                            type="text"
-                            name="data.attributeModifiers.{{key}}.saveModifier"
-                            value="{{attribute.saveModifier}}"
+                            type="number"
+                            name="data.attributeModifiers.{{key}}.saveMod"
+                            value="{{attribute.saveMod}}"
                         />
                     </div>
                 </div>
@@ -91,6 +91,32 @@
                 />
             </div>
             {{/each}}
+            <div class="flexrow">
+                <div>
+                    <label for="data.size" class="resource-label">Size</label>
+                    <input type="text" name="data.size" value="{{data.size}}" />
+                </div>
+                <div>
+                    <label for="data.movementSpeed" class="resource-label"
+                        >Movement Speed</label
+                    >
+                    <input
+                        type="number"
+                        name="data.movementSpeed"
+                        value="{{data.movementSpeed}}"
+                    />
+                </div>
+            </div>
+            <div class="resource">
+                <label class="resource-label align-left"
+                    >Encumbrance speed decrease step value</label
+                >
+                <input
+                    name="data.encumbranceSpeedDecreaseThreshold"
+                    type="number"
+                    value="{{data.encumbranceSpeedDecreaseThreshold}}"
+                />
+            </div>
         </div>
     </section>
 </form>

@@ -98,7 +98,6 @@
                             <input
                                 type="number"
                                 name="data.EP.temporary"
-                                class="resource temporary-ep"
                                 value="{{data.EP.temporary}}"
                                 data-dtype="Number"
                                 title="Temporary EP"
@@ -115,14 +114,14 @@
                         class="resource-content flexrow flex-center flex-between"
                     >
                         <input
-                            type="text"
+                            type="number"
                             name="data.mana.value"
                             value="{{data.mana.value}}"
                             data-dtype="Number"
                         />
                         <span> / </span>
                         <input
-                            type="text"
+                            type="number"
                             name="data.mana.max"
                             value="{{data.mana.max}}"
                             data-dtype="Number"
@@ -135,7 +134,7 @@
                         >Defense (DR: {{data.defense.damageReduction}})</label
                     >
                     <input
-                        type="text"
+                        type="number"
                         name="data.defense.value"
                         value="{{data.defense.value}}"
                         data-dtype="Number"
@@ -144,7 +143,7 @@
                 <div>
                     <label
                         class="rollable resource-label"
-                        data-roll="d20+@attributes.con.total+@attributes.con.saveModifier"
+                        data-roll="d20+@attributes.con.base+@attributes.con.mod+@attributes.con.saveMod"
                         >Wounds</label
                     >
                     <input
@@ -176,7 +175,7 @@
     <section class="sheet-body">
         {{!-- Attributes Tab --}}
         <div class="tab features" data-group="primary" data-tab="attributes">
-            <div class="attributes flexcol">
+            <div class="flexcol">
                 <div
                     class="flexrow flex-group-center"
                     style="
@@ -192,7 +191,7 @@
                 </div>
                 {{#each data.attributes as |attribute key|}}
                 <div
-                    class="attribute flexrow flex-group-center"
+                    class="flexrow flex-group-center"
                     style="margin-bottom: 0.25rem"
                 >
                     <div class="flexrow flex-group-center">
@@ -213,7 +212,7 @@
                         </button> -->
                         <button
                             class="rollable"
-                            data-roll="d20+@attributes.{{key}}.total+@attributes.{{key}}.saveModifier"
+                            data-roll="d20+@attributes.{{key}}.total+@attributes.{{key}}.saveMod"
                             data-label="{{attribute.label}} Save"
                             type="button"
                         >
@@ -254,10 +253,8 @@
                     <div></div>
                     {{/if}} -->
                     <input
-                        type="text"
-                        name="data.attributes.{{key}}.total"
-                        value="{{attribute.total}}"
-                        data-dtype="Number"
+                        type="number"
+                        value="{{add attribute.base attribute.mod}}"
                     />
                 </div>
                 {{/each}}
@@ -277,9 +274,9 @@
                 <label class="resource-label align-left">Expertise</label>
                 <label class="resource-label align-left">Value</label>
             </div>
-            <div class="checks grid grid-2col">
+            <div class="grid grid-2col">
                 {{#each data.checks as |check key|}}
-                <div class="check flexrow flex-group-center">
+                <div class="flexrow flex-group-center">
                     {{#if check.expertise}}
                     <label
                         for="data.check.{{key}}.total"
@@ -312,7 +309,7 @@
                         >
                     </div>
                     <input
-                        type="text"
+                        type="number"
                         name="data.checks.{{key}}.total"
                         data-dtype="Number"
                         value="{{check.total}}"
@@ -342,14 +339,10 @@
             editable=editable}}
         </div>
 
-        {{!-- Owned Equipment Tab --}}
-        <div class="tab equipment" data-group="primary" data-tab="equipment">
-            {{>
-            "systems/apotheosis/templates/actor/parts/actor-equipment.html"}}
-        </div>
-
         {{!-- Owned Items Tab --}}
         <div class="tab items" data-group="primary" data-tab="items">
+            {{>
+            "systems/apotheosis/templates/actor/parts/actor-equipment.html"}}
             {{> "systems/apotheosis/templates/actor/parts/actor-items.html"}}
         </div>
 
@@ -376,7 +369,7 @@
                     >{{attribute.label}}</label
                 >
                 <input
-                    type="text"
+                    type="number"
                     name="data.attributes.{{key}}.base"
                     value="{{attribute.base}}"
                     data-dtype="Number"

@@ -1,42 +1,14 @@
 <form class="{{cssClass}} {{actor.type}} flexcol" autocomplete="off">
     {{!-- Sheet Header --}}
     <header class="sheet-header">
-        <div class="flexcol">
-            <img
-                class="profile-img"
-                src="{{actor.img}}"
-                data-edit="img"
-                title="{{actor.name}}"
-                height="100"
-                width="100"
-            />
-            <div class="flexcol">
-                <label
-                    class="resource-label"
-                    for="data.exhaustion"
-                    style="width: 100px"
-                    >Exhaustion</label
-                >
-                <input
-                    type="number"
-                    name="data.exhaustion"
-                    value="{{data.exhaustion}}"
-                    style="width: 100px"
-                />
-                <label
-                    class="resource-label"
-                    for="data.hungerThirst"
-                    style="width: 100px"
-                    >Hunger / Thirst</label
-                >
-                <input
-                    type="number"
-                    name="data.hungerThirst"
-                    value="{{data.hungerThirst}}"
-                    style="width: 100px"
-                />
-            </div>
-        </div>
+        <img
+            class="profile-img"
+            src="{{actor.img}}"
+            data-edit="img"
+            title="{{actor.name}}"
+            height="100"
+            width="100"
+        />
         <div class="header-fields" style="flex-basis: 70%">
             <h1 class="charname">
                 <input
@@ -74,95 +46,67 @@
                     />
                 </div>
             </div>
-            <div class="resources grid grid-4col">
-                <div class="flexcol">
-                    <div class="resource flex-group-center">
-                        <label for="data.EP.value" class="resource-label"
-                            >EP
-                        </label>
-                        <div
-                            class="resource-content flexrow flex-center flex-between"
-                        >
-                            <input
-                                type="number"
-                                name="data.EP.value"
-                                value="{{data.EP.value}}"
-                                data-dtype="Number"
-                            />
-                            <span> / </span>
-                            <input
-                                type="number"
-                                name="data.EP.max"
-                                value="{{data.EP.max}}"
-                                data-dtype="Number"
-                                disabled
-                            />
-                        </div>
-                        <div
-                            class="flexrow flex-group-center"
-                            style="margin-top: 0.5rem"
-                        >
-                            <span> + Temp.</span>
-                            <input
-                                type="number"
-                                name="data.EP.temporary"
-                                class="resource temporary-ep"
-                                value="{{data.EP.temporary}}"
-                                data-dtype="Number"
-                                title="Temporary EP"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="resource flex-group-center">
-                    <label for="data.mana.value" class="resource-label"
-                        >Mana (Limit: {{data.mana.expenditureLimit}})</label
-                    >
-                    <div
-                        class="resource-content flexrow flex-center flex-between"
-                    >
+            <div
+                class="resources flexrow flex-group-center"
+                style="justify-content: space-around"
+            >
+                <div class="flex-group-center sheet-EP">
+                    <label for="data.EP.value" class="resource-label">EP</label>
+                    <div class="flexrow flex-group-center">
                         <input
-                            type="text"
-                            name="data.mana.value"
-                            value="{{data.mana.value}}"
-                            data-dtype="Number"
+                            type="number"
+                            name="data.EP.value"
+                            value="{{data.EP.value}}"
+                            style="width: 150px"
                         />
+
                         <span> / </span>
                         <input
-                            type="text"
-                            name="data.mana.max"
-                            value="{{data.mana.max}}"
-                            data-dtype="Number"
+                            type="number"
+                            name="data.EP.max"
+                            value="{{data.EP.max}}"
+                            style="width: 150px"
                             disabled
                         />
                     </div>
                 </div>
 
-                <div class="resource">
+                <div>
                     <label class="resource-label"
                         >Defense (DR: {{data.defense.damageReduction}})</label
                     >
                     <input
                         type="text"
-                        name="data.defense.value"
-                        value="{{data.defense.value}}"
+                        name="data.defense.value.total"
+                        value="{{data.defense.value.total}}"
                         data-dtype="Number"
+                        style="width: 150px"
                         disabled
                     />
                 </div>
-                <div>
-                    <label
-                        class="rollable resource-label"
-                        data-roll="d20+@attributes.con.total+@attributes.con.saveModifier"
-                        >Wounds</label
+
+                <div class="flex-group-center sheet-mana">
+                    <label for="data.mana.value" class="resource-label"
+                        >Mana (Limit: {{data.mana.expenditureLimit}})</label
                     >
-                    <input
-                        type="text"
-                        name="data.wounds.value"
-                        value="{{data.wounds.value}}"
-                        data-dtype="Number"
-                    />
+                    <div class="flexrow flex-group-center">
+                        <input
+                            type="number"
+                            name="data.mana.value"
+                            value="{{data.mana.value}}"
+                            style="width: 150px"
+                            data-dtype="Number"
+                        />
+                        <span> / </span>
+                        <input
+                            type="number"
+                            name="data.mana.max"
+                            value="{{data.mana.max}}"
+                            style="width: 150px"
+                            data-dtype="Number"
+                            disabled
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -173,12 +117,10 @@
         {{!-- Default tab is specified in actor-sheet.mjs --}}
         <a class="item" data-tab="attributes">Attributes</a>
         <a class="item" data-tab="checks">Checks</a>
-        <a class="item" data-tab="abilities">Abilities</a>
-        <a class="item" data-tab="equipment">Equipment</a>
         <a class="item" data-tab="items">Items</a>
         <a class="item" data-tab="spells">Spells</a>
         <a class="item" data-tab="biography">Biography</a>
-        <a class="item" data-tab="effects">Effects</a>
+        <!-- <a class="item" data-tab="effects">Effects</a> -->
         <a class="item" data-tab="data">Data</a>
     </nav>
 
@@ -186,6 +128,52 @@
     <section class="sheet-body">
         {{!-- Attributes Tab --}}
         <div class="tab features" data-group="primary" data-tab="attributes">
+            <h2>Information</h2>
+            <div class="information flexrow">
+                <div>
+                    <label class="resource-label">Movement</label>
+                    <input
+                        type="text"
+                        name="data.movementSpeed"
+                        value="{{data.movementSpeed}}"
+                        disabled
+                    />
+                </div>
+                <div>
+                    <label
+                        class="rollable resource-label"
+                        data-roll="d20+@attributes.con.base+@attributes.con.mod+@attributes.con.saveMod"
+                        >Wounds</label
+                    >
+                    <input
+                        type="text"
+                        name="data.wounds.value"
+                        value="{{data.wounds.value}}"
+                        data-dtype="Number"
+                    />
+                </div>
+                <div>
+                    <label class="resource-label" for="data.exhaustion"
+                        >Exhaustion</label
+                    >
+                    <input
+                        type="number"
+                        name="data.exhaustion"
+                        value="{{data.exhaustion}}"
+                    />
+                </div>
+                <div>
+                    <label class="resource-label" for="data.hungerThirst"
+                        >Hunger / Thirst</label
+                    >
+                    <input
+                        type="number"
+                        name="data.hungerThirst"
+                        value="{{data.hungerThirst}}"
+                    />
+                </div>
+            </div>
+            <h2>Attributes</h2>
             <div class="attributes flexcol">
                 <div
                     class="flexrow flex-group-center"
@@ -207,9 +195,8 @@
                 >
                     <div class="flexrow flex-group-center">
                         <label
-                            for="data.attributes.{{key}}.total"
                             class="resource-label rollable align-left"
-                            data-roll="d20+@attributes.{{key}}.total"
+                            data-roll="d20+@attributes.{{key}}.base+@attributes.{{key}}.mod"
                             data-label="{{attribute.label}}"
                             >{{attribute.label}}</label
                         >
@@ -223,9 +210,10 @@
                         </button> -->
                         <button
                             class="rollable"
-                            data-roll="d20+@attributes.{{key}}.total+@attributes.{{key}}.saveModifier"
+                            data-roll="d20+@attributes.{{key}}.base+@attributes.{{key}}.mod+@attributes.{{key}}.saveMod"
                             data-label="{{attribute.label}} Save"
                             type="button"
+                            style="height: 24px; line-height: unset"
                         >
                             Save
                         </button>
@@ -264,14 +252,17 @@
                     <div></div>
                     {{/if}}
                     <input
-                        type="text"
-                        name="data.attributes.{{key}}.total"
-                        value="{{attribute.total}}"
-                        data-dtype="Number"
+                        type="number"
+                        value="{{add attribute.base attribute.mod}}"
                         disabled
                     />
                 </div>
                 {{/each}}
+            </div>
+            <h2>Abilities</h2>
+            <div class="abilities">
+                {{>
+                "systems/apotheosis/templates/actor/parts/actor-features.html"}}
             </div>
         </div>
 
@@ -293,17 +284,15 @@
                 <div class="check flexrow flex-group-center">
                     {{#if check.expertise}}
                     <label
-                        for="data.check.{{key}}.total"
                         class="resource-label rollable align-left"
-                        data-roll="d20+(@checks.{{key}}.total * 1.5)"
+                        data-roll="d20+max((@checks.{{key}}.base + @checks.{{key}}.mod) * 1.5, 0)"
                         data-label="{{check.label}}"
                         >{{check.label}} ({{check.attribute}})</label
                     >
                     {{else}}
                     <label
-                        for="data.check.{{key}}.total"
                         class="resource-label rollable align-left"
-                        data-roll="d20+@checks.{{key}}.total"
+                        data-roll="d20+(@checks.{{key}}.base + @checks.{{key}}.mod)"
                         data-label="{{check.label}}"
                         >{{check.label}} ({{check.attribute}})</label
                     >
@@ -324,9 +313,7 @@
                     </div>
                     <input
                         type="number"
-                        for="data.check.{{key}}.total"
-                        data-dtype="Number"
-                        value="{{check.total}}"
+                        value="{{add check.base check.mod}}"
                         disabled
                     />
                 </div>
@@ -335,18 +322,18 @@
             </div>
         </div>
 
-        {{!-- Abilities Tab --}}
-        <div class="tab abilities" data-group="primary" data-tab="abilities">
-            <div>
-                {{!-- This is a Handlebars partial. They're stored in the
-                `/parts` folder next to this sheet, and defined in
-                module/helpers/templates.mjs --}} {{>
-                "systems/apotheosis/templates/actor/parts/actor-features.html"}}
-            </div>
-        </div>
-
         {{!-- Biography Tab --}}
         <div class="tab biography" data-group="primary" data-tab="biography">
+            <div>
+                <label class="resource-label" for="data.languages"
+                    >Languages</label
+                >
+                <input
+                    type="text"
+                    name="data.languages"
+                    value="{{data.languages}}"
+                />
+            </div>
             {{!-- If you want TinyMCE editors to output inline rolls when
             rendered, you need to pass the actor's roll data to the rollData
             property. --}} {{editor content=data.biography
@@ -354,14 +341,87 @@
             editable=editable}}
         </div>
 
-        {{!-- Owned Equipment Tab --}}
-        <div class="tab equipment" data-group="primary" data-tab="equipment">
-            {{>
-            "systems/apotheosis/templates/actor/parts/actor-equipment.html"}}
-        </div>
-
         {{!-- Owned Items Tab --}}
         <div class="tab items" data-group="primary" data-tab="items">
+            <div class="grid grid-5col">
+                <div class="resource">
+                    <label
+                        for="data.money.platinum"
+                        class="resource-label align-left"
+                        data-label="Platinum"
+                        >Platinum:
+                    </label>
+                    <input
+                        type="number"
+                        class="align-left"
+                        name="data.money.platinum"
+                        value="{{data.money.platinum}}"
+                        data-dtype="Number"
+                    />
+                </div>
+                <div class="resource">
+                    <label
+                        for="data.money.gold"
+                        class="resource-label align-left"
+                        data-label="gold"
+                        >Gold:
+                    </label>
+                    <input
+                        type="number"
+                        class="align-left"
+                        name="data.money.gold"
+                        value="{{data.money.gold}}"
+                        data-dtype="Number"
+                    />
+                </div>
+                <div class="resource">
+                    <label
+                        for="data.money.electrum"
+                        class="resource-label align-left"
+                        data-label="electrum"
+                        >Electrum:
+                    </label>
+                    <input
+                        type="number"
+                        class="align-left"
+                        name="data.money.electrum"
+                        value="{{data.money.electrum}}"
+                        data-dtype="Number"
+                    />
+                </div>
+                <div class="resource">
+                    <label
+                        for="data.money.silver"
+                        class="resource-label align-left"
+                        data-label="silver"
+                        >Silver:
+                    </label>
+                    <input
+                        type="number"
+                        class="align-left"
+                        name="data.money.silver"
+                        value="{{data.money.silver}}"
+                        data-dtype="Number"
+                    />
+                </div>
+                <div class="resource">
+                    <label
+                        for="data.money.copper"
+                        class="resource-label align-left"
+                        data-label="copper"
+                        >Copper:
+                    </label>
+                    <input
+                        type="number"
+                        class="align-left"
+                        name="data.money.copper"
+                        value="{{data.money.copper}}"
+                        data-dtype="Number"
+                    />
+                </div>
+            </div>
+            {{>
+            "systems/apotheosis/templates/actor/parts/actor-equipment.html"}}
             {{> "systems/apotheosis/templates/actor/parts/actor-items.html"}}
         </div>
 
@@ -370,9 +430,9 @@
             {{> "systems/apotheosis/templates/actor/parts/actor-spells.html"}}
         </div>
 
-        <div class="tab effects" data-group="primary" data-tab="effects">
+        <!-- <div class="tab effects" data-group="primary" data-tab="effects">
             {{> "systems/apotheosis/templates/actor/parts/actor-effects.html"}}
-        </div>
+        </div> -->
 
         {{!-- Data Tab --}}
         <div class="tab data" data-group="primary" data-tab="data">
@@ -439,4 +499,5 @@
     <label for="data.currentEncumbrance">{{data.currentEncumbrance}}</label>
     <span> / </span>
     <label for="data.encumbranceLimit">{{data.encumbranceLimit}}</label>
+    <span>lb.</span>
 </div>

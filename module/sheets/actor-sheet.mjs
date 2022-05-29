@@ -1,7 +1,7 @@
-import {
-    onManageActiveEffect,
-    prepareActiveEffectCategories,
-} from "../helpers/effects.mjs"
+// import {
+//     onManageActiveEffect,
+//     prepareActiveEffectCategories,
+// } from "../helpers/effects.mjs"
 
 /**
  * Extend the basic ActorSheet with some very simple modifications
@@ -14,7 +14,7 @@ export class ApotheosisActorSheet extends ActorSheet {
             classes: ["apotheosis", "sheet", "actor"],
             template: "systems/apotheosis/templates/actor/actor-sheet.html",
             width: 720,
-            height: 720,
+            height: 800,
             tabs: [
                 {
                     navSelector: ".sheet-tabs",
@@ -72,7 +72,7 @@ export class ApotheosisActorSheet extends ActorSheet {
         // Add roll data for TinyMCE editors.
         context.rollData = context.actor.getRollData()
 
-        context.effects = prepareActiveEffectCategories(this.actor.effects)
+        // context.effects = prepareActiveEffectCategories(this.actor.effects)
 
         return context
     }
@@ -265,10 +265,10 @@ export class ApotheosisActorSheet extends ActorSheet {
             li.slideUp(200, () => this.render(false))
         })
 
-        // Active Effect management
-        html.find(".effect-control").click((ev) =>
-            onManageActiveEffect(ev, this.actor)
-        )
+        // // Active Effect management
+        // html.find(".effect-control").click((ev) =>
+        //     onManageActiveEffect(ev, this.actor)
+        // )
 
         // Rollable abilities.
         html.find(".rollable").click(this._onRoll.bind(this))

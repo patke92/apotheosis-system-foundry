@@ -1,5 +1,7 @@
 # apotheosis-system-foundry
 
+TODO change attribute etc totals to (in template: just remove total) (in http {{attribute.base + attribute.mod}} (in js: change all v.value =+ to v.mod =+))
+
 Apotheosis system definition for FoundryVTT
 
 ---

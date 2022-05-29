@@ -6,3 +6,14 @@
     width: 100%;
     text-align: center;
 }
+
+.apotheosis .sheet-EP,
+.apotheosis .sheet-mana {
+    text-align: start;
+    flex-grow: 0;
+    flex-basis: 30%;
+}
+
+.apotheosis .information {
+    margin-bottom: 0.5rem;
+}
