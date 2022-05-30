@@ -107,7 +107,8 @@ export class ApotheosisActor extends Actor {
             // Armor
             if (item.data.type === "armor") {
                 if (item.data.data.equipped === true) {
-                    data.defense.value += item.data.data.defense
+                    console.log(item)
+                    data.defense.value.total += item.data.data.defense
                     data.defense.damageReduction +=
                         item.data.data.damageReduction
                 }

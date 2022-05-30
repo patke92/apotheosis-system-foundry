@@ -274,7 +274,7 @@
             "customAttackFormula": false,
             "weaponDamageAttribute": "str",
             "damageDie": "d4",
-            "damageFormula": "d6 + ((@attributes.str.base + @attrbutes.str.mod) / 2)",
+            "damageFormula": "d6 + (@attributes.str.base + @attrbutes.str.mod) / 2",
             "customDamageFormula": false,
             "expertise": false,
             "equipped": false

@@ -265,6 +265,17 @@ export class ApotheosisActorSheet extends ActorSheet {
             li.slideUp(200, () => this.render(false))
         })
 
+        // Equip Inventory Item
+        html.find(".item-equip").click((ev) => {
+            const li = $(ev.currentTarget).parents(".item")
+            const item = this.actor.items.get(li.data("itemId"))
+            item.data.data.equipped = !item.data.data.equipped
+            item.update({
+                "data.equipped": item.data.data.equipped,
+            })
+            // this.render(false)
+        })
+
         // // Active Effect management
         // html.find(".effect-control").click((ev) =>
         //     onManageActiveEffect(ev, this.actor)
