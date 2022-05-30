@@ -62,7 +62,7 @@
                         {{checked
                         data.equipped}}
                     />
-                    <label">Equipped</label>
+                    <label>Equipped</label>
                 </div>
                 <div class="flexrow flex-group-center align-left">
                     <input
@@ -75,7 +75,9 @@
                 </div>
             </div>
             <div class="resource" style="margin: 10px 0">
-                <label class="resource-label align-left">Attack bonus attribute</label>
+                <label class="resource-label align-left"
+                    >Attack bonus attribute</label
+                >
                 <input
                     type="text"
                     name="data.weaponAttackAttribute"
@@ -83,16 +85,10 @@
                     data-dtype="String"
                 />
             </div>
-            <div class="resource flexrow flex-group-center align-left" style="margin: 10px 0">
-                <div class="resource">
-                    <label class="resource-label">Attack roll Formula</label>
-                    <input
-                        type="text"
-                        name="data.formula"
-                        value="{{data.formula}}"
-                        data-dtype="String"
-                    />
-                </div>
+            <div
+                class="resource flexrow flex-group-center align-left"
+                style="margin: 10px 0"
+            >
                 <input
                     type="checkbox"
                     name="data.customAttackFormula"
@@ -100,6 +96,15 @@
                     data.customAttackFormula}}
                 />
                 <label class="resource-label">Custom attack formula</label>
+            </div>
+            <div class="resource">
+                <label class="resource-label">Attack roll Formula</label>
+                <input
+                    type="text"
+                    name="data.formula"
+                    value="{{data.formula}}"
+                    data-dtype="String"
+                />
             </div>
             <div class="grid grid-2col" style="margin: 10px 0">
                 <div class="resource">
@@ -121,16 +126,10 @@
                     />
                 </div>
             </div>
-            <div class="resource flexrow flex-group-center align-left" style="margin: 10px 0">
-                <div class="resource">
-                    <label class="resource-label">Damage roll Formula</label>
-                    <input
-                        type="text"
-                        name="data.damageFormula"
-                        value="{{data.damageFormula}}"
-                        data-dtype="String"
-                    />
-                </div>
+            <div
+                class="resource flexrow flex-group-center align-left"
+                style="margin: 10px 0"
+            >
                 <input
                     type="checkbox"
                     name="data.customDamageFormula"
@@ -138,6 +137,15 @@
                     data.customDamageFormula}}
                 />
                 <label class="resource-label">Custom damage formula</label>
+            </div>
+            <div class="resource">
+                <label class="resource-label">Damage roll Formula</label>
+                <input
+                    type="text"
+                    name="data.damageFormula"
+                    value="{{data.damageFormula}}"
+                    data-dtype="String"
+                />
             </div>
         </div>
     </section>

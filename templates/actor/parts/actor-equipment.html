@@ -29,7 +29,7 @@
             ></i>
         </div>
         <button
-            class="rollable"
+            class="rollable flex0"
             data-roll-type="item"
             type="button"
             style="height: 24px; line-height: unset"
@@ -37,7 +37,7 @@
             Attack
         </button>
         <button
-            class="roll-damage"
+            class="roll-damage flex0"
             damageFormula="{{item.data.damageFormula}}"
             data-roll-type="damage"
             type="button"
@@ -60,7 +60,8 @@
 <ol class="items-list">
     <li class="item flexrow items-header">
         <div class="item-name">Armor</div>
-        <div class="item-formula">Defense</div>
+        <div class="item-defense">Defense</div>
+        <div class="item-dr">DR</div>
         <div class="item-controls">
             <a
                 class="item-control item-create"
@@ -88,7 +89,8 @@
                 class="armor-equipped-icon fas {{#if item.data.equipped}}fa-check{{else}}{{/if}}"
             ></i>
         </div>
-        <div class="item-formula item-prop">{{item.data.defense}}</div>
+        <div class="item-defense item-prop">{{item.data.defense}}</div>
+        <div class="item-dr item-prop">{{item.data.damageReduction}}</div>
         <div class="item-controls">
             <a class="item-control item-edit" title="Edit Item"
                 ><i class="fas fa-edit"></i
