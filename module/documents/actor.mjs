@@ -101,6 +101,44 @@ export class ApotheosisActor extends Actor {
             10 + (data.attributes.dex.base + data.attributes.dex.mod) / 2
         )
 
+        // Mana
+        if (data.maxManaAttribute === "int") {
+            data.mana.max =
+                data.attributes[data.maxManaAttribute].base +
+                data.attributes[data.maxManaAttribute].mod
+        }
+        if (data.maxManaAttribute === "con") {
+            data.mana.max =
+                (data.attributes[data.maxManaAttribute].base +
+                    data.attributes[data.maxManaAttribute].mod) /
+                2
+        }
+
+        this._calculateExhaustion(data)
+
+        // Checks
+        for (let [checkName, v] of Object.entries(data.checks)) {
+            v.base = data.attributes[v.attribute].total
+        }
+        // Get race check modifiers
+        if (race) {
+            for (let [k, v] of Object.entries(race.data.data.checkModifiers)) {
+                data.checks[k].mod += v.value
+            }
+        }
+        this._calculateCheckTotal(data)
+
+        this._calculateEncumbrance(data)
+
+        this._calculateHungerThirst(data)
+
+        // Movespeed can't be less than 0
+        if (data.movementSpeed < 0) {
+            data.movementSpeed = 0
+        }
+
+        this._calculateAttributeTotal(data)
+
         // Attributes and other modifiers from items
         for (let item of actorData.items) {
             // Armor
@@ -131,69 +169,6 @@ export class ApotheosisActor extends Actor {
                 }
             }
         }
-
-        // Mana
-        if (data.maxManaAttribute === "int") {
-            data.mana.max =
-                data.attributes[data.maxManaAttribute].base +
-                data.attributes[data.maxManaAttribute].mod
-        }
-        if (data.maxManaAttribute === "con") {
-            data.mana.max =
-                (data.attributes[data.maxManaAttribute].base +
-                    data.attributes[data.maxManaAttribute].mod) /
-                2
-        }
-
-        // Exhaustion
-        if (data.exhaustion < 0) {
-            data.exhaustion = 0
-        }
-        if (data.exhaustion > 6) {
-            data.exhaustion = 6
-        }
-        if (data.exhaustion >= 2) {
-            for (let [k, v] of Object.entries(data.attributes)) {
-                v.situationalModifier -= 1
-            }
-            this._calculateAttributeTotal(data)
-        }
-        if (data.exhaustion >= 3) {
-            for (let [k, v] of Object.entries(data.attributes)) {
-                v.situationalModifier -= 2
-            }
-            this._calculateAttributeTotal(data)
-        }
-        if (data.exhaustion >= 4) {
-            data.movementSpeed = Math.ceil(data.movementSpeed / 2)
-        }
-        if (data.exhaustion >= 5) {
-            data.EP.value = 0
-            data.EP.max = 0
-        }
-
-        // Checks
-        for (let [checkName, v] of Object.entries(data.checks)) {
-            v.base = data.attributes[v.attribute].total
-        }
-        // Get race check modifiers
-        if (race) {
-            for (let [k, v] of Object.entries(race.data.data.checkModifiers)) {
-                data.checks[k].mod += v.value
-            }
-        }
-        this._calculateCheckTotal(data)
-
-        this._calculateEncumbrance(data)
-
-        this._calculateHungerThirst(data)
-
-        // Movespeed can't be less than 0
-        if (data.movementSpeed < 0) {
-            data.movementSpeed = 0
-        }
-
-        this._calculateAttributeTotal(data)
     }
 
     /**
@@ -266,6 +241,35 @@ export class ApotheosisActor extends Actor {
         for (let [k, v] of Object.entries(data.checks)) {
             v.base = data.attributes[v.attribute].total
             v.total = v.base + v.mod
+        }
+    }
+
+    _calculateExhaustion(data) {
+        // Exhaustion
+        if (data.exhaustion < 0) {
+            data.exhaustion = 0
+        }
+        if (data.exhaustion > 6) {
+            data.exhaustion = 6
+        }
+        if (data.exhaustion >= 2) {
+            for (let [k, v] of Object.entries(data.attributes)) {
+                v.situationalModifier -= 1
+            }
+            this._calculateAttributeTotal(data)
+        }
+        if (data.exhaustion >= 3) {
+            for (let [k, v] of Object.entries(data.attributes)) {
+                v.situationalModifier -= 2
+            }
+            this._calculateAttributeTotal(data)
+        }
+        if (data.exhaustion >= 4) {
+            data.movementSpeed = Math.ceil(data.movementSpeed / 2)
+        }
+        if (data.exhaustion >= 5) {
+            data.EP.value = 0
+            data.EP.max = 0
         }
     }
 
