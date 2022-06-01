@@ -64,6 +64,7 @@ export class ApotheosisActor extends Actor {
                 data.attributes[k].mod += v.value
                 data.attributes[k].saveMod = +v.saveMod
             }
+
             this._calculateAttributeTotal(data)
             data.movementSpeed = race.data.data.movementSpeed
         }
@@ -84,6 +85,11 @@ export class ApotheosisActor extends Actor {
             this._calculateAttributeTotal(data)
         }
 
+        // todo add some kind of formula to enable Evasive
+        data.defense.value.base = Math.ceil(
+            10 + (data.attributes.dex.total ? data.attributes.dex.total : 0) / 2
+        )
+
         // Encumbrance
         data.encumbranceLimit = data.attributes.str.total * 2
         if (data.encumbranceLimit < 0) {
@@ -103,9 +109,6 @@ export class ApotheosisActor extends Actor {
             }
         }
 
-        // todo add some kind of formula to enable Evasive
-        data.defense.value.base = Math.ceil(10 + data.attributes.dex.total / 2)
-
         this._calculateExhaustion(data)
 
         // Checks
@@ -118,6 +121,7 @@ export class ApotheosisActor extends Actor {
                 data.checks[k].mod += v.value
             }
         }
+
         this._calculateCheckTotal(data)
 
         this._calculateOverEncumbrance(data)
@@ -131,9 +135,8 @@ export class ApotheosisActor extends Actor {
             // Armor
             if (item.data.type === "armor") {
                 if (item.data.data.equipped === true) {
-                    data.defense.value.mod += item.data.data.defense
-                    data.defense.damageReduction +=
-                        item.data.data.damageReduction
+                    armorModifier += item.data.data.defense
+                    drModifier += item.data.data.damageReduction
                 }
 
                 data.currentEncumbrance += item.data.data.weight
@@ -165,6 +168,9 @@ export class ApotheosisActor extends Actor {
                     item.data.data.weight * item.data.data.quantity
             }
         }
+
+        if (armorModifier > 0) data.defense.value.mod += armorModifier
+        if (drModifier > 0) data.defense.damageReduction += drModifier
 
         this._calculateAttributeTotal(data, EPModifier, manaModifier)
     }
@@ -320,7 +326,6 @@ export class ApotheosisActor extends Actor {
                 data.attributes.dex.saveMod -= 3
                 data.attributes.dex.situationalModifier -= 3
                 this._calculateAttributeTotal(data)
-
                 dexReductionCounter -= 20
             }
         }
@@ -332,6 +337,7 @@ export class ApotheosisActor extends Actor {
             for (let [k, v] of Object.entries(data.attributes)) {
                 v.saveMod -= 3
             }
+
             for (let [k, v] of Object.entries(data.checks)) {
                 v.mod -= 3
             }
@@ -341,6 +347,7 @@ export class ApotheosisActor extends Actor {
             for (let [k, v] of Object.entries(data.attributes)) {
                 v.situationalModifier -= 1
             }
+
             this._calculateAttributeTotal(data)
         }
 
