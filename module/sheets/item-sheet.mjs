@@ -49,12 +49,12 @@ export class ApotheosisItemSheet extends ItemSheet {
             const weaponAttackAttribute = itemData.data.weaponAttackAttribute
             const weaponDamageAttribute = itemData.data.weaponDamageAttribute
             if (itemData.data.customDamageFormula === false) {
-                itemData.data.damageFormula = `${itemData.data.damageDie} + ceil((@attributes.${weaponDamageAttribute}.total) / 2)`
+                itemData.data.damageFormula = `${itemData.data.damageDie} + ceil(@attributes.${weaponDamageAttribute}.total / 2)`
             }
 
             if (itemData.data.customAttackFormula === false) {
                 if (itemData.data.expertise === true) {
-                    itemData.data.formula = `d20 + max(ceil((@attributes.${weaponAttackAttribute}.total) * 1.5), 0)`
+                    itemData.data.formula = `d20 + max(ceil(@attributes.${weaponAttackAttribute}.total * 1.5), 0)`
                 } else {
                     itemData.data.formula = `d20 + @attributes.${weaponAttackAttribute}.total`
                 }

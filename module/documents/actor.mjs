@@ -101,9 +101,6 @@ export class ApotheosisActor extends Actor {
             10 + (data.attributes.dex.base + data.attributes.dex.mod) / 2
         )
 
-        // EP
-        this._calculateEP(data)
-
         // Attributes and other modifiers from items
         for (let item of actorData.items) {
             // Armor
@@ -160,20 +157,12 @@ export class ApotheosisActor extends Actor {
                 v.situationalModifier -= 1
             }
             this._calculateAttributeTotal(data)
-            this._calculateCheckTotal(data)
-            if (data.exhaustion < 5) {
-                this._calculateEP(data)
-            }
         }
         if (data.exhaustion >= 3) {
             for (let [k, v] of Object.entries(data.attributes)) {
                 v.situationalModifier -= 2
             }
             this._calculateAttributeTotal(data)
-            this._calculateCheckTotal(data)
-            if (data.exhaustion < 5) {
-                this._calculateEP(data)
-            }
         }
         if (data.exhaustion >= 4) {
             data.movementSpeed = Math.ceil(data.movementSpeed / 2)
@@ -256,9 +245,9 @@ export class ApotheosisActor extends Actor {
 
     _calculateEP(data) {
         data.EP.max =
-            (data.attributes.con.base + data.attributes.con.mod) * 5 +
-            (data.attributes.str.base + data.attributes.str.mod) * 2 +
-            (data.attributes.dex.base + data.attributes.dex.mod) * 2
+            data.attributes.con.total * 5 +
+            data.attributes.str.total * 2 +
+            data.attributes.dex.total * 2
 
         if (data.EP.max < 2) {
             data.EP.max = 2
@@ -269,10 +258,13 @@ export class ApotheosisActor extends Actor {
         for (let [k, v] of Object.entries(data.attributes)) {
             v.total = v.base + v.mod + v.situationalModifier
         }
+        this._calculateCheckTotal(data)
+        if (data.exhaustion < 5) this._calculateEP(data)
     }
 
     _calculateCheckTotal(data) {
         for (let [k, v] of Object.entries(data.checks)) {
+            v.base = data.attributes[v.attribute].total
             v.total = v.base + v.mod
         }
     }
@@ -298,7 +290,6 @@ export class ApotheosisActor extends Actor {
                 data.attributes.dex.saveMod -= 3
                 data.attributes.dex.situationalModifier -= 3
                 this._calculateAttributeTotal(data)
-                this._calculateCheckTotal(data)
 
                 dexReductionCounter -= 20
             }
@@ -315,16 +306,12 @@ export class ApotheosisActor extends Actor {
             for (let [k, v] of Object.entries(data.checks)) {
                 v.mod -= 3
             }
-            this._calculateEP(data)
         }
         if (data.hungerThirst >= 3) {
             for (let [k, v] of Object.entries(data.attributes)) {
                 v.situationalModifier -= 1
             }
-            for (let [k, v] of Object.entries(data.checks)) {
-                v.mod -= 1
-            }
-            this._calculateEP(data)
+            this._calculateAttributeTotal(data)
         }
         if (data.hungerThirst >= 4) {
             data.movementSpeed = Math.ceil(data.movementSpeed / 2)
