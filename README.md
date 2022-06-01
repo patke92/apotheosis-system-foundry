@@ -4,6 +4,13 @@ Apotheosis system definition for FoundryVTT
 
 ---
 
+What is not there yet
+
+-   abilities
+-   spells
+
+---
+
 What is NOT automated:
 
 -   abilities that add a situational modifier such as +3 on saves vs being frightened
