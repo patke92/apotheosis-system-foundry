@@ -2,7 +2,7 @@
     "name": "apotheosis",
     "title": "Apotheosis",
     "description": "A very basic implementation of Apotheosis for FoundryVTT",
-    "version": "0.29.0",
+    "version": "0.31.0",
     "minimumCoreVersion": "0.8.6",
     "compatibleCoreVersion": "9",
     "author": "patke",
@@ -11,8 +11,8 @@
     "scripts": [],
     "packs": [
         {
-            "name": "Races",
-            "label": "Apotheosis Demo Races",
+            "name": "Species",
+            "label": "Apotheosis Demo Species",
             "path": "packs/races.db",
             "type": "Item"
         },

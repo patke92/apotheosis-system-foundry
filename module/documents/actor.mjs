@@ -59,6 +59,7 @@ export class ApotheosisActor extends Actor {
                 data.attributes[k].mod += v.value
                 data.attributes[k].saveMod = +v.saveMod
             }
+            this._calculateAttributeTotal(data)
             data.movementSpeed = race.data.data.movementSpeed
         }
 
@@ -73,6 +74,7 @@ export class ApotheosisActor extends Actor {
             )) {
                 data.attributes[modifier].mod += v.value
             }
+            this._calculateAttributeTotal(data)
         }
 
         // Encumbrance
@@ -94,6 +96,7 @@ export class ApotheosisActor extends Actor {
             }
         }
 
+        // todo add some kind of formula to enable [dex ability]
         data.defense.value.base = Math.ceil(
             10 + (data.attributes.dex.base + data.attributes.dex.mod) / 2
         )
@@ -106,7 +109,6 @@ export class ApotheosisActor extends Actor {
             // Armor
             if (item.data.type === "armor") {
                 if (item.data.data.equipped === true) {
-                    console.log(item)
                     data.defense.value.mod += item.data.data.defense
                     data.defense.damageReduction +=
                         item.data.data.damageReduction
@@ -155,16 +157,20 @@ export class ApotheosisActor extends Actor {
         }
         if (data.exhaustion >= 2) {
             for (let [k, v] of Object.entries(data.attributes)) {
-                v.mod -= 1
+                v.situationalModifier -= 1
             }
+            this._calculateAttributeTotal(data)
+            this._calculateCheckTotal(data)
             if (data.exhaustion < 5) {
                 this._calculateEP(data)
             }
         }
         if (data.exhaustion >= 3) {
             for (let [k, v] of Object.entries(data.attributes)) {
-                v.mod -= 2
+                v.situationalModifier -= 2
             }
+            this._calculateAttributeTotal(data)
+            this._calculateCheckTotal(data)
             if (data.exhaustion < 5) {
                 this._calculateEP(data)
             }
@@ -179,9 +185,7 @@ export class ApotheosisActor extends Actor {
 
         // Checks
         for (let [checkName, v] of Object.entries(data.checks)) {
-            v.base =
-                data.attributes[v.attribute].base +
-                data.attributes[v.attribute].mod
+            v.base = data.attributes[v.attribute].total
         }
         // Get race check modifiers
         if (race) {
@@ -189,68 +193,18 @@ export class ApotheosisActor extends Actor {
                 data.checks[k].mod += v.value
             }
         }
+        this._calculateCheckTotal(data)
 
-        // Overencumbrance
-        const overEncumbrance =
-            (data.encumbranceLimit - data.currentEncumbrance) * -1
-        if (overEncumbrance >= data.encumbranceSpeedDecreaseThreshold) {
-            let movementSpeedReductionCounter = overEncumbrance
-            while (
-                movementSpeedReductionCounter >=
-                data.encumbranceSpeedDecreaseThreshold
-            ) {
-                console.log(`reducing speed...`)
-                data.movementSpeed -= 1
-                movementSpeedReductionCounter -=
-                    data.encumbranceSpeedDecreaseThreshold
-            }
-        }
-        if (overEncumbrance >= 20) {
-            let dexReductionCounter = overEncumbrance
-            while (dexReductionCounter >= 20) {
-                data.attributes.dex.saveMod -= 3
-                data.attributes.dex.mod -= 3
+        this._calculateEncumbrance(data)
 
-                for (let [k, v] of Object.entries(data.checks)) {
-                    if (v.attribute === "dex") {
-                        v.mod -= 3
-                    }
-                }
-
-                dexReductionCounter -= 20
-            }
-        }
+        this._calculateHungerThirst(data)
 
         // Movespeed can't be less than 0
         if (data.movementSpeed < 0) {
             data.movementSpeed = 0
         }
 
-        // Hunger / Thirst
-        if (data.hungerThirst >= 2) {
-            data.attackMod -= 3
-            for (let [k, v] of Object.entries(data.attributes)) {
-                v.saveMod -= 3
-            }
-            for (let [k, v] of Object.entries(data.checks)) {
-                v.mod -= 3
-            }
-            this._calculateEP(data)
-        }
-        if (data.hungerThirst >= 3) {
-            for (let [k, v] of Object.entries(data.attributes)) {
-                v.mod -= 1
-            }
-            for (let [k, v] of Object.entries(data.checks)) {
-                v.mod -= 1
-            }
-            this._calculateEP(data)
-        }
-        if (data.hungerThirst >= 4) {
-            data.movementSpeed = Math.ceil(data.movementSpeed / 2)
-        }
-
-        console.log(data)
+        this._calculateAttributeTotal(data)
     }
 
     /**
@@ -308,6 +262,72 @@ export class ApotheosisActor extends Actor {
 
         if (data.EP.max < 2) {
             data.EP.max = 2
+        }
+    }
+
+    _calculateAttributeTotal(data) {
+        for (let [k, v] of Object.entries(data.attributes)) {
+            v.total = v.base + v.mod + v.situationalModifier
+        }
+    }
+
+    _calculateCheckTotal(data) {
+        for (let [k, v] of Object.entries(data.checks)) {
+            v.total = v.base + v.mod
+        }
+    }
+
+    _calculateEncumbrance(data) {
+        // Overencumbrance
+        const overEncumbrance =
+            (data.encumbranceLimit - data.currentEncumbrance) * -1
+        if (overEncumbrance >= data.encumbranceSpeedDecreaseThreshold) {
+            let movementSpeedReductionCounter = overEncumbrance
+            while (
+                movementSpeedReductionCounter >=
+                data.encumbranceSpeedDecreaseThreshold
+            ) {
+                data.movementSpeed -= 1
+                movementSpeedReductionCounter -=
+                    data.encumbranceSpeedDecreaseThreshold
+            }
+        }
+        if (overEncumbrance >= 20) {
+            let dexReductionCounter = overEncumbrance
+            while (dexReductionCounter >= 20) {
+                data.attributes.dex.saveMod -= 3
+                data.attributes.dex.situationalModifier -= 3
+                this._calculateAttributeTotal(data)
+                this._calculateCheckTotal(data)
+
+                dexReductionCounter -= 20
+            }
+        }
+    }
+
+    _calculateHungerThirst(data) {
+        // Hunger / Thirst
+        if (data.hungerThirst >= 2) {
+            data.attackMod -= 3
+            for (let [k, v] of Object.entries(data.attributes)) {
+                v.saveMod -= 3
+            }
+            for (let [k, v] of Object.entries(data.checks)) {
+                v.mod -= 3
+            }
+            this._calculateEP(data)
+        }
+        if (data.hungerThirst >= 3) {
+            for (let [k, v] of Object.entries(data.attributes)) {
+                v.situationalModifier -= 1
+            }
+            for (let [k, v] of Object.entries(data.checks)) {
+                v.mod -= 1
+            }
+            this._calculateEP(data)
+        }
+        if (data.hungerThirst >= 4) {
+            data.movementSpeed = Math.ceil(data.movementSpeed / 2)
         }
     }
 }

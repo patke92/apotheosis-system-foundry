@@ -189,8 +189,10 @@ export class ApotheosisActorSheet extends ActorSheet {
             const attribute = ev.currentTarget.classList[1]
             const valueToChange = "data.attributes." + attribute + ".progress"
             const attributeValue =
-                this.actor.data.data.attributes[attribute].base
-            const newAttributeValue = attributeValue + 1
+                this.actor.data.data.attributes[attribute].base +
+                this.actor.data.data.attributes[attribute].mod
+            const newAttributeValue =
+                this.actor.data.data.attributes[attribute].base + 1
             const attributeToAdjust = "data.attributes." + attribute + ".base"
             const trainingBoolean =
                 this.actor.data.data.attributes[attribute].training

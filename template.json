@@ -30,6 +30,7 @@
                     "str": {
                         "base": 0,
                         "mod": 0,
+                        "situationalModifier": 0,
                         "saveMod": 0,
                         "progress": 0,
                         "training": false,
@@ -38,6 +39,7 @@
                     "dex": {
                         "base": 0,
                         "mod": 0,
+                        "situationalModifier": 0,
                         "saveMod": 0,
                         "progress": 0,
                         "training": false,
@@ -46,6 +48,7 @@
                     "con": {
                         "base": 0,
                         "mod": 0,
+                        "situationalModifier": 0,
                         "saveMod": 0,
                         "progress": 0,
                         "training": false,
@@ -54,6 +57,7 @@
                     "int": {
                         "base": 0,
                         "mod": 0,
+                        "situationalModifier": 0,
                         "saveMod": 0,
                         "progress": 0,
                         "training": false,
@@ -62,6 +66,7 @@
                     "cha": {
                         "base": 0,
                         "mod": 0,
+                        "situationalModifier": 0,
                         "saveMod": 0,
                         "progress": 0,
                         "training": false,
@@ -70,6 +75,7 @@
                     "luck": {
                         "base": 0,
                         "mod": 0,
+                        "situationalModifier": 0,
                         "saveMod": 0,
                         "trainingPossible": false
                     }
@@ -271,11 +277,11 @@
             "templates": ["base", "genericItem"],
             "range": 0,
             "weaponAttackAttribute": "str",
-            "formula": "d20+@attributes.str.base+@attributes.str.mod+@attackMod",
+            "formula": "d20+@attributes.str.total",
             "customAttackFormula": false,
             "weaponDamageAttribute": "str",
             "damageDie": "d4",
-            "damageFormula": "d6+(@attributes.str.base+@attributes.str.mod)/2",
+            "damageFormula": "d6+(@attributes.str.total)/2",
             "customDamageFormula": false,
             "expertise": false,
             "equipped": false

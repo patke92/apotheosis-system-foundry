@@ -32,7 +32,7 @@
                         name="race"
                         type="text"
                         value="{{race.name}}"
-                        placeholder="Race"
+                        placeholder="Species"
                         disabled
                     />
                 </div>
@@ -141,7 +141,7 @@
                 <div>
                     <label
                         class="rollable resource-label"
-                        data-roll="d20+@attributes.con.base+@attributes.con.mod+@attributes.con.saveMod"
+                        data-roll="d20+@attributes.con.total+@attributes.con.saveMod"
                         >Wounds</label
                     >
                     <input
@@ -195,7 +195,7 @@
                     <div class="flexrow flex-group-center">
                         <label
                             class="resource-label rollable align-left"
-                            data-roll="d20+@attributes.{{key}}.base+@attributes.{{key}}.mod"
+                            data-roll="d20+@attributes.{{key}}.total"
                             data-label="{{attribute.label}}"
                             >{{attribute.label}}</label
                         >
@@ -209,7 +209,7 @@
                         </button> -->
                         <button
                             class="rollable"
-                            data-roll="d20+@attributes.{{key}}.base+@attributes.{{key}}.mod+@attributes.{{key}}.saveMod"
+                            data-roll="d20+@attributes.{{key}}.total+@attributes.{{key}}.saveMod"
                             data-label="{{attribute.label}} Save"
                             type="button"
                             style="height: 24px; line-height: unset"
@@ -250,11 +250,7 @@
                     {{else}}
                     <div></div>
                     {{/if}}
-                    <input
-                        type="number"
-                        value="{{add attribute.base attribute.mod}}"
-                        disabled
-                    />
+                    <input type="number" value="{{attribute.total}}" disabled />
                 </div>
                 {{/each}}
             </div>
@@ -284,14 +280,14 @@
                     {{#if check.expertise}}
                     <label
                         class="resource-label rollable align-left"
-                        data-roll="d20+max((@checks.{{key}}.base + @checks.{{key}}.mod) * 1.5, 0)"
+                        data-roll="d20+max(ceil(@checks.{{key}}.total * 1.5), 0)"
                         data-label="{{check.label}}"
                         >{{check.label}} ({{check.attribute}})</label
                     >
                     {{else}}
                     <label
                         class="resource-label rollable align-left"
-                        data-roll="d20+(@checks.{{key}}.base + @checks.{{key}}.mod)"
+                        data-roll="d20+@checks.{{key}}.total"
                         data-label="{{check.label}}"
                         >{{check.label}} ({{check.attribute}})</label
                     >
@@ -310,11 +306,7 @@
                             >Expertise</label
                         >
                     </div>
-                    <input
-                        type="number"
-                        value="{{add check.base check.mod}}"
-                        disabled
-                    />
+                    <input type="number" value="{{check.total}}" disabled />
                 </div>
 
                 {{/each}}

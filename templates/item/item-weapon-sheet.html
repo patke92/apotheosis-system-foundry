@@ -15,11 +15,11 @@
                     placeholder="Name"
                 />
             </h1>
-            <div class="grid grid-2col">
+            <div class="grid grid-3col">
                 <div class="resource">
                     <label class="resource-label">Quantity</label>
                     <input
-                        type="text"
+                        type="number"
                         name="data.quantity"
                         value="{{data.quantity}}"
                         data-dtype="Number"
@@ -28,9 +28,18 @@
                 <div class="resource">
                     <label class="resource-label">Weight</label>
                     <input
-                        type="text"
+                        type="number"
                         name="data.weight"
                         value="{{data.weight}}"
+                        data-dtype="Number"
+                    />
+                </div>
+                <div class="resource">
+                    <label class="resource-label">Reach/Range</label>
+                    <input
+                        type="number"
+                        name="data.range"
+                        value="{{data.range}}"
                         data-dtype="Number"
                     />
                 </div>
