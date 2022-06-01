@@ -43,6 +43,10 @@ export class ApotheosisActor extends Actor {
      */
     _prepareCharacterData(actorData) {
         if (actorData.type !== "character") return
+        let EPModifier = 0
+        let manaModifier = 0
+        let armorModifier = 0
+        let drModifier = 0
 
         // Make modifications to data here. For example:
         const data = actorData.data
@@ -51,6 +55,7 @@ export class ApotheosisActor extends Actor {
         const race = actorData.items.find((item) => {
             return item.data.type === "race"
         })
+
         // Get race attribute modifiers and movement speed
         if (race) {
             for (let [k, v] of Object.entries(
@@ -67,6 +72,7 @@ export class ApotheosisActor extends Actor {
         const background = actorData.items.find((item) => {
             return item.data.type === "background"
         })
+
         // Get background attribute modifiers
         if (background) {
             for (let [modifier, v] of Object.entries(
@@ -74,15 +80,16 @@ export class ApotheosisActor extends Actor {
             )) {
                 data.attributes[modifier].mod += v.value
             }
+
             this._calculateAttributeTotal(data)
         }
 
         // Encumbrance
-        data.encumbranceLimit =
-            (data.attributes.str.base + data.attributes.str.mod) * 2
+        data.encumbranceLimit = data.attributes.str.total * 2
         if (data.encumbranceLimit < 0) {
             data.encumbranceLimit = 0
         }
+
         if (race) {
             data.encumbranceSpeedDecreaseThreshold =
                 race.data.data.encumbranceSpeedDecreaseThreshold
@@ -96,23 +103,8 @@ export class ApotheosisActor extends Actor {
             }
         }
 
-        // todo add some kind of formula to enable [dex ability]
-        data.defense.value.base = Math.ceil(
-            10 + (data.attributes.dex.base + data.attributes.dex.mod) / 2
-        )
-
-        // Mana
-        if (data.maxManaAttribute === "int") {
-            data.mana.max =
-                data.attributes[data.maxManaAttribute].base +
-                data.attributes[data.maxManaAttribute].mod
-        }
-        if (data.maxManaAttribute === "con") {
-            data.mana.max =
-                (data.attributes[data.maxManaAttribute].base +
-                    data.attributes[data.maxManaAttribute].mod) /
-                2
-        }
+        // todo add some kind of formula to enable Evasive
+        data.defense.value.base = Math.ceil(10 + data.attributes.dex.total / 2)
 
         this._calculateExhaustion(data)
 
@@ -128,14 +120,9 @@ export class ApotheosisActor extends Actor {
         }
         this._calculateCheckTotal(data)
 
-        this._calculateEncumbrance(data)
+        this._calculateOverEncumbrance(data)
 
         this._calculateHungerThirst(data)
-
-        // Movespeed can't be less than 0
-        if (data.movementSpeed < 0) {
-            data.movementSpeed = 0
-        }
 
         this._calculateAttributeTotal(data)
 
@@ -148,16 +135,20 @@ export class ApotheosisActor extends Actor {
                     data.defense.damageReduction +=
                         item.data.data.damageReduction
                 }
+
                 data.currentEncumbrance += item.data.data.weight
             }
+
             if (item.data.type === "ability") {
                 if (item.data.data.spellcasting === true) {
                     data.spellcasting = true
                     data.maxManaAttribute = item.data.data.maxManaAttribute
+                    data.mana.expenditureLimit +=
+                        item.data.data.expenditureLimitBonus
                 }
-                data.mana.expenditureLimit +=
-                    item.data.data.expenditureLimitBonus
-                data.EP.max += item.data.data.EPModifier
+
+                EPModifier += item.data.data.EPModifier
+
                 if (race) {
                     data.encumbranceSpeedDecreaseThreshold = Math.max(
                         item.data.data.encumbranceSpeedDecreaseThreshold,
@@ -168,7 +159,14 @@ export class ApotheosisActor extends Actor {
                         item.data.data.encumbranceSpeedDecreaseThreshold
                 }
             }
+
+            if (item.data.type === "item") {
+                data.currentEncumbrance +=
+                    item.data.data.weight * item.data.data.quantity
+            }
         }
+
+        this._calculateAttributeTotal(data, EPModifier, manaModifier)
     }
 
     /**
@@ -218,7 +216,7 @@ export class ApotheosisActor extends Actor {
         // Process additional NPC data here.
     }
 
-    _calculateEP(data) {
+    _calculateEP(data, EPModifier) {
         data.EP.max =
             data.attributes.con.total * 5 +
             data.attributes.str.total * 2 +
@@ -227,14 +225,38 @@ export class ApotheosisActor extends Actor {
         if (data.EP.max < 2) {
             data.EP.max = 2
         }
+
+        data.EP.max += EPModifier
+
+        if (data.exhaustion === 5) {
+            data.EP.value = 0
+            data.EP.max = 0
+        }
     }
 
-    _calculateAttributeTotal(data) {
+    _calculateMana(data, manaModifier) {
+        if (data.spellcasting === false) return
+        if (data.maxManaAttribute === "int") {
+            data.mana.max = data.attributes[data.maxManaAttribute].total
+        }
+
+        if (data.maxManaAttribute === "con") {
+            data.mana.max = Math.ceil(
+                data.attributes[data.maxManaAttribute].total / 2
+            )
+        }
+
+        if (manaModifier) data.mana.max += manaModifier
+    }
+
+    _calculateAttributeTotal(data, EPModifier = 0, manaModifier = 0) {
         for (let [k, v] of Object.entries(data.attributes)) {
             v.total = v.base + v.mod + v.situationalModifier
         }
+
         this._calculateCheckTotal(data)
-        if (data.exhaustion < 5) this._calculateEP(data)
+        this._calculateMana(data, manaModifier)
+        this._calculateEP(data, EPModifier)
     }
 
     _calculateCheckTotal(data) {
@@ -245,36 +267,39 @@ export class ApotheosisActor extends Actor {
     }
 
     _calculateExhaustion(data) {
-        // Exhaustion
         if (data.exhaustion < 0) {
             data.exhaustion = 0
         }
+
         if (data.exhaustion > 6) {
             data.exhaustion = 6
         }
+
         if (data.exhaustion >= 2) {
             for (let [k, v] of Object.entries(data.attributes)) {
                 v.situationalModifier -= 1
             }
             this._calculateAttributeTotal(data)
         }
+
         if (data.exhaustion >= 3) {
             for (let [k, v] of Object.entries(data.attributes)) {
                 v.situationalModifier -= 2
             }
             this._calculateAttributeTotal(data)
         }
+
         if (data.exhaustion >= 4) {
             data.movementSpeed = Math.ceil(data.movementSpeed / 2)
         }
+
         if (data.exhaustion >= 5) {
             data.EP.value = 0
             data.EP.max = 0
         }
     }
 
-    _calculateEncumbrance(data) {
-        // Overencumbrance
+    _calculateOverEncumbrance(data) {
         const overEncumbrance =
             (data.encumbranceLimit - data.currentEncumbrance) * -1
         if (overEncumbrance >= data.encumbranceSpeedDecreaseThreshold) {
@@ -288,6 +313,7 @@ export class ApotheosisActor extends Actor {
                     data.encumbranceSpeedDecreaseThreshold
             }
         }
+
         if (overEncumbrance >= 20) {
             let dexReductionCounter = overEncumbrance
             while (dexReductionCounter >= 20) {
@@ -301,7 +327,6 @@ export class ApotheosisActor extends Actor {
     }
 
     _calculateHungerThirst(data) {
-        // Hunger / Thirst
         if (data.hungerThirst >= 2) {
             data.attackMod -= 3
             for (let [k, v] of Object.entries(data.attributes)) {
@@ -311,12 +336,14 @@ export class ApotheosisActor extends Actor {
                 v.mod -= 3
             }
         }
+
         if (data.hungerThirst >= 3) {
             for (let [k, v] of Object.entries(data.attributes)) {
                 v.situationalModifier -= 1
             }
             this._calculateAttributeTotal(data)
         }
+
         if (data.hungerThirst >= 4) {
             data.movementSpeed = Math.ceil(data.movementSpeed / 2)
         }
