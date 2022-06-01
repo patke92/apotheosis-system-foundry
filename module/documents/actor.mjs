@@ -97,7 +97,6 @@ export class ApotheosisActor extends Actor {
         data.defense.value.base = Math.ceil(
             10 + (data.attributes.dex.base + data.attributes.dex.mod) / 2
         )
-        data.defense.value.total += data.defense.value.base
 
         // EP
         this._calculateEP(data)
@@ -108,7 +107,7 @@ export class ApotheosisActor extends Actor {
             if (item.data.type === "armor") {
                 if (item.data.data.equipped === true) {
                     console.log(item)
-                    data.defense.value.total += item.data.data.defense
+                    data.defense.value.mod += item.data.data.defense
                     data.defense.damageReduction +=
                         item.data.data.damageReduction
                 }

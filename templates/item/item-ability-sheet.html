@@ -56,7 +56,7 @@
             </div>
             {{/each}}
             <div class="flexrow flex-group-center">
-                <label class="align-left">EPModifier</label>
+                <label class="align-left resource-label">EPModifier</label>
                 <input
                     name="data.EPModifier"
                     type="number"
@@ -72,30 +72,26 @@
                     data.spellcasting}}
                 />
                 <label class="resource-label align-left">Spellcasting</label>
-
-                <div class="resource">
-                    <label class="resource-label align-left"
-                        >Max mana attribute</label
-                    >
-                    <input
-                        name="data.maxManaAttribute"
-                        type="text"
-                        value="{{data.maxManaAttribute}}"
-                    />
-                </div>
-                <div class="resource">
-                    <label class="resource-label align-left"
-                        >Each x lb overencumbrance reduce speed</label
-                    >
-                    <input
-                        name="data.encumbranceSpeedDecreaseThreshold"
-                        type="number"
-                        value="{{data.encumbranceSpeedDecreaseThreshold}}"
-                    />
-                </div>
             </div>
-            <div>
-                <label for="data.encumbranceLimitBonus"></label>
+            <div class="flexrow flex-group-center">
+                <label class="resource-label align-left"
+                    >Max mana attribute</label
+                >
+                <input
+                    name="data.maxManaAttribute"
+                    type="text"
+                    value="{{data.maxManaAttribute}}"
+                />
+            </div>
+            <div class="flexrow flex-group-center">
+                <label class="resource-label align-left"
+                    >Speed decrease per lb</label
+                >
+                <input
+                    name="data.encumbranceSpeedDecreaseThreshold"
+                    type="number"
+                    value="{{data.encumbranceSpeedDecreaseThreshold}}"
+                />
             </div>
         </div>
     </section>

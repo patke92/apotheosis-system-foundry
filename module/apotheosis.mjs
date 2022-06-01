@@ -74,6 +74,14 @@ Handlebars.registerHelper("add", function (value1, value2) {
     return value1 + value2
 })
 
+Handlebars.registerHelper("greaterThan", function (value1, value2, options) {
+    "use strict"
+    if (value1 > value2) {
+        return options.fn(this)
+    }
+    return options.inverse(this)
+})
+
 /* -------------------------------------------- */
 /*  Ready Hook                                  */
 /* -------------------------------------------- */

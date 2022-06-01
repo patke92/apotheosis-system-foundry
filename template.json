@@ -18,7 +18,7 @@
                 "defense": {
                     "value": {
                         "base:": 0,
-                        "total": 0
+                        "mod": 0
                     },
                     "damageReduction": 0
                 },
@@ -269,12 +269,13 @@
         },
         "weapon": {
             "templates": ["base", "genericItem"],
+            "range": 0,
             "weaponAttackAttribute": "str",
-            "formula": "d20 + @attributes.str.base + @attributes.str.mod  + @attackMod",
+            "formula": "d20+@attributes.str.base+@attributes.str.mod+@attackMod",
             "customAttackFormula": false,
             "weaponDamageAttribute": "str",
             "damageDie": "d4",
-            "damageFormula": "d6 + (@attributes.str.base + @attrbutes.str.mod) / 2",
+            "damageFormula": "d6+(@attributes.str.base+@attributes.str.mod)/2",
             "customDamageFormula": false,
             "expertise": false,
             "equipped": false
