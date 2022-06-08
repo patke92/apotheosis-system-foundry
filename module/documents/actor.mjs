@@ -124,8 +124,6 @@ export class ApotheosisActor extends Actor {
 
         this._calculateCheckTotal(data)
 
-        this._calculateOverEncumbrance(data)
-
         this._calculateHungerThirst(data)
 
         this._calculateAttributeTotal(data)
@@ -167,6 +165,7 @@ export class ApotheosisActor extends Actor {
                 data.currentEncumbrance +=
                     item.data.data.weight * item.data.data.quantity
             }
+            this._calculateOverEncumbrance(data)
         }
 
         if (armorModifier > 0) data.defense.value.mod += armorModifier
@@ -308,13 +307,14 @@ export class ApotheosisActor extends Actor {
     _calculateOverEncumbrance(data) {
         const overEncumbrance =
             (data.encumbranceLimit - data.currentEncumbrance) * -1
+
         if (overEncumbrance >= data.encumbranceSpeedDecreaseThreshold) {
             let movementSpeedReductionCounter = overEncumbrance
             while (
                 movementSpeedReductionCounter >=
                 data.encumbranceSpeedDecreaseThreshold
             ) {
-                data.movementSpeed -= 1
+                data.movementSpeed--
                 movementSpeedReductionCounter -=
                     data.encumbranceSpeedDecreaseThreshold
             }
