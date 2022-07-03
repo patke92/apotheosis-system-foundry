@@ -21,6 +21,12 @@
             "label": "Apotheosis Demo Backgrounds",
             "path": "packs/backgrounds.db",
             "type": "Item"
+        },
+        {
+            "name": "Abilities",
+            "label": "Apotheosis Demo Abilities",
+            "path": "packs/abilities.db",
+            "type": "Item"
         }
     ],
     "languages": [
